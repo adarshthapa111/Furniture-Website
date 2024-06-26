@@ -6,6 +6,7 @@ import { Button } from "@/app/components/ui/button";
 import Image from "next/image";
 import { UserAuth } from "../context/AuthContext";
 import { usePathname } from "next/navigation";
+import Searchbar from "../components/Seachbar";
 const Navbar = () => {
   const { user } = UserAuth();
   const pathname = usePathname();
@@ -31,31 +32,30 @@ const Navbar = () => {
           </Link>
           <Link href="/AboutUs">
             <ul className="text-sm font-medium">
-              <li className={pathname === "/AboutUs" ? "font-bold" : ""}>About</li>
+              <li className={pathname === "/AboutUs" ? "font-bold" : ""}>
+                About
+              </li>
             </ul>
           </Link>
           <Link href="/ContactUs">
             <ul className="text-sm font-medium">
-              <li className={pathname === "/ContactUs" ? "font-bold" : ""}>Contact Us</li>
+              <li className={pathname === "/ContactUs" ? "font-bold" : ""}>
+                Contact Us
+              </li>
             </ul>
           </Link>
-          <Link
+          {/* <Link
             href="/AddFurniture"
             className="text-sm font-medium hover:underline underline-offset-4"
             prefetch={false}
           >
             Add Furniture
-          </Link>
+          </Link> */}
         </nav>
+        <div>
+          <Searchbar />
+        </div>
         <div className="hidden lg:flex space-x-4">
-          <Link href="#">
-            <Image
-              src="/img/isearch.png"
-              className="h-7 w-7 "
-              height={40}
-              width={25}
-            />
-          </Link>
           <Link href="Favourites">
             <Image
               src="/img/ifav.png"

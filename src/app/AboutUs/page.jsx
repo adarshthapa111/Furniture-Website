@@ -113,7 +113,6 @@ export default function AboutUs() {
               experiences, contributing to the creation of our high-quality,
               handcrafted furniture.
             </p>
-            
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col items-center gap-2">
@@ -135,7 +134,9 @@ export default function AboutUs() {
               </Avatar>
               <div className="text-center">
                 <p className="text-sm font-medium leading-none">Chandan Bam</p>
-                <p className="text-sm text-muted-foreground">Full Stack Developer</p>
+                <p className="text-sm text-muted-foreground">
+                  Full Stack Developer
+                </p>
               </div>
             </div>
             <div className="flex flex-col items-center gap-2">
