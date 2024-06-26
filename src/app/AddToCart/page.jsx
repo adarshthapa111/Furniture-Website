@@ -187,7 +187,7 @@ export default function AddToCart() {
                 height={30}
                 width={30}
                 // onClick={handleDelete(item.id)}
-                onClick={()=>handleDelete(item.id)}
+                onClick={() => handleDelete(item.id)}
               />
               {/* </div> */}
             </div>

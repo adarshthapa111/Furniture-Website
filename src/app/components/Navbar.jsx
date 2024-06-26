@@ -26,9 +26,7 @@ const Navbar = () => {
           </Link>
           <Link href="/Shop">
             <ul className="text-sm font-medium">
-              <li className={pathname === "/Shop" ? "font-bold" : ""}>
-                Shop
-              </li>
+              <li className={pathname === "/Shop" ? "font-bold" : ""}>Shop</li>
             </ul>
           </Link>
           <Link
@@ -38,12 +36,10 @@ const Navbar = () => {
           >
             About
           </Link>
-          <Link
-            href="#"
-            className="text-sm font-medium hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            Contact
+          <Link href="/ContactUs">
+            <ul className="text-sm font-medium">
+              <li className={pathname === "/ContactUs" ? "font-bold" : ""}>Contact Us</li>
+            </ul>
           </Link>
           <Link
             href="/AddFurniture"
