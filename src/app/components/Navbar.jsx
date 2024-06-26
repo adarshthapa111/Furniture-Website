@@ -29,12 +29,10 @@ const Navbar = () => {
               <li className={pathname === "/Shop" ? "font-bold" : ""}>Shop</li>
             </ul>
           </Link>
-          <Link
-            href="#"
-            className="text-sm font-medium hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            About
+          <Link href="/AboutUs">
+            <ul className="text-sm font-medium">
+              <li className={pathname === "/AboutUs" ? "font-bold" : ""}>About</li>
+            </ul>
           </Link>
           <Link href="/ContactUs">
             <ul className="text-sm font-medium">
