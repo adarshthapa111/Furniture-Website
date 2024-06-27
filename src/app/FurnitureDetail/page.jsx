@@ -17,6 +17,8 @@ import { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 import Swal from "sweetalert2";
 import { supabase } from "../Supabase/config";
+import InnerImageZoom from "react-inner-image-zoom";
+import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 
 export default function FurnitureDetail() {
   const params = useSearchParams();
@@ -189,12 +191,15 @@ export default function FurnitureDetail() {
       <main className="flex-1">
         <section className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-12 lg:py-20">
           <div className="grid gap-6">
-            <Image
+            <InnerImageZoom
               src={image}
               alt="Product Image"
-              width={600}
+              width={500}
               height={600}
               className="aspect-square object-contain rounded-lg border  border-gray-300 shadow-md"
+              zoomType="hover"
+              zoomScale={1.1}
+              // zoomSrc={image}
             />
             {/* <div className="grid md:grid-cols-2 gap-4">
               <Image
