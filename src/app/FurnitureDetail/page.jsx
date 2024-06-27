@@ -195,8 +195,8 @@ export default function FurnitureDetail() {
               src={image}
               alt="Product Image"
               width={500}
-              height={600}
-              className="aspect-square object-contain rounded-lg border  border-gray-300 shadow-md"
+              height={800}
+              className="aspect-square object-c rounded-lg border  border-gray-300 shadow-md"
               zoomType="hover"
               zoomScale={1.1}
               // zoomSrc={image}
@@ -301,9 +301,11 @@ export default function FurnitureDetail() {
                 <Button size="lg" onClick={handleCart}>
                   Add to Cart
                 </Button>
-                <Button size="lg" variant="outline">
-                  Buy Now
-                </Button>
+                <Link href="/Customization">
+                  <Button size="lg" variant="outline">
+                    Customize
+                  </Button>
+                </Link>
                 <Button size="lg" onClick={handleFavourite}>
                   Add to Favourite
                 </Button>
