@@ -40,17 +40,10 @@ const Navbar = () => {
           <Link href="/ContactUs">
             <ul className="text-sm font-medium">
               <li className={pathname === "/ContactUs" ? "font-bold" : ""}>
-                Contact Us
+                Contact
               </li>
             </ul>
           </Link>
-          {/* <Link
-            href="/AddFurniture"
-            className="text-sm font-medium hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            Add Furniture
-          </Link> */}
         </nav>
         <div>
           <Searchbar />
