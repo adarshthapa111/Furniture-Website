@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import {Button} from "../components/ui/button";
 const Profile = () => {
   const { user: currentUser } = UserAuth();
   const [userData, setUserData] = useState(null);
@@ -68,7 +68,7 @@ const Profile = () => {
               <div className="max-w-2xl mx-auto text-center space-y-4">
                 <h1 className="text-3xl font-bold font-josefin tracking-tight sm:text-4xl md:text-5xl font-great-vibes">
                   Welcome,{" "}
-                  <span className="bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text">
+                  <span className="bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text capitalize">
                     {userData.firstName} {userData.lastName}
                   </span>{" "}
                   !
@@ -84,7 +84,7 @@ const Profile = () => {
               <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md">
                 <div className="p-6">
                   <h3 className="text-lg font-semibold font-josefin">First Name</h3>
-                  <p className="text-gray-500 dark:text-gray-400 mt-2 font-josefin">
+                  <p className="text-gray-500 dark:text-gray-400 mt-2 font-josefin capitalize">
                     {userData.firstName}
                   </p>
                 </div>
@@ -92,7 +92,7 @@ const Profile = () => {
               <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md">
                 <div className="p-6 font-josefin">
                   <h3 className="text-lg font-semibold">Last Name</h3>
-                  <p className="text-gray-500 dark:text-gray-400 mt-2">
+                  <p className="text-gray-500 dark:text-gray-400 mt-2 capitalize">
                     {userData.lastName}
                   </p>
                 </div>
@@ -105,6 +105,12 @@ const Profile = () => {
                   </p>
                 </div>
               </div>
+              {/* <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-400">
+                <div className="p-6 font-josefin text-center">
+                    <Button varient="ghost" className="text-center font-semibold font-josefin">Logout</Button>
+                </div>
+              </div> */}
+              
             </div>
           </section>
         </>

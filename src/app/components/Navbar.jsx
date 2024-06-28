@@ -7,6 +7,9 @@ import Image from "next/image";
 import { UserAuth } from "../context/AuthContext";
 import { usePathname } from "next/navigation";
 import Searchbar from "../components/Seachbar";
+import Dropdown from "../components/Dropdown"
+import ProfileDropdown from "../components/ProfileDropdown";
+
 const Navbar = () => {
   const { user } = UserAuth();
   const pathname = usePathname();
@@ -70,14 +73,7 @@ const Navbar = () => {
               <Button varient="outline">Login</Button>
             </Link>
           ) : (
-            <Link href="/Profile">
-              <Image
-                src="/img/iuser.png"
-                className="h-7 w-7 "
-                height={40}
-                width={25}
-              />
-            </Link>
+            <ProfileDropdown/>
           )}
         </div>
 

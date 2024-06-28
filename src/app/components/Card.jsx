@@ -141,6 +141,7 @@ const Card = () => {
                 alt="Furniture Item"
                 width={500}
                 height={400}
+                loading="lazy"
                 className="w-full h-56 object-cover"
               />
               <div className="p-6 space-y-4">
