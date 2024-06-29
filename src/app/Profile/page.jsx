@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {Button} from "../components/ui/button";
+
 const Profile = () => {
   const { user: currentUser } = UserAuth();
   const [userData, setUserData] = useState(null);
@@ -36,28 +37,6 @@ const Profile = () => {
     fetchUserData();
   }, [currentUser]);
 
-  //   const handleSignOut = () => {
-  //     Swal.fire({
-  //       title: "Are you sure?",
-  //       text: "You will be logged out ⇤",
-  //       icon: "warning",
-  //       showCancelButton: true,
-  //       confirmButtonText: "Yes, log out",
-  //       cancelButtonText: "Cancel",
-  //     }).then(async (result) => {
-  //       if (result.isConfirmed) {
-  //         try {
-  //           await firebaseSignOut(auth);
-  //           console.log("Sign out successful.");
-  //           router.push("/");
-  //           toast.success("Sucessfully Logout");
-  //         } catch (error) {
-  //           console.error("Error signing out:", error);
-  //           setError(error.message);
-  //         }
-  //       }
-  //     });
-  //   };
 
   return (
     <div className="w-full min-h-screen">

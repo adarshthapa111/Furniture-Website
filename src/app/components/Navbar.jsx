@@ -7,7 +7,6 @@ import Image from "next/image";
 import { UserAuth } from "../context/AuthContext";
 import { usePathname } from "next/navigation";
 import Searchbar from "../components/Seachbar";
-import Dropdown from "../components/Dropdown"
 import ProfileDropdown from "../components/ProfileDropdown";
 
 const Navbar = () => {
