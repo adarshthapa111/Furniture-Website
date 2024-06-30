@@ -53,15 +53,15 @@ const Navbar = () => {
         <div className="hidden lg:flex space-x-4">
           <Link href="Favourites">
             <Image
-              src="/img/ifav.png"
-              className="h-7 w-7 "
+              src="/img/fav-item.png"
+              className="h-7 w-7 drop-shadow-2xl shadow-gray-800 "
               height={40}
               width={25}
             />
           </Link>
           <Link href="AddToCart">
             <Image
-              src="/img/iaddtocart.png"
+              src="/img/cartitems.png"
               className="h-7 w-7 "
               height={40}
               width={25}

@@ -45,18 +45,18 @@ const ProfileDropdown = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <Image
-            src="/img/iuser.png"
+            src="/img/user.png"
             className="h-7 w-7"
             height={40}
             width={40}
             alt="User"
           />
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent className="mt-4">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <Link href="/Profile" passHref>

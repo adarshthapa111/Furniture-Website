@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Card, CardContent, CardFooter } from "../components/ui/card";
 import { Label } from "../components/ui/label";
@@ -11,6 +11,7 @@ import { UserAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import { auth, db } from "../firebase";
 import { ref, get } from "firebase/database";
+import Image from "next/image";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -69,7 +70,7 @@ export default function Login() {
               <Input
                 id="email"
                 type="email"
-                placeholder="m@example.com"
+                placeholder="Enter your email.."
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -88,7 +89,7 @@ export default function Login() {
               </div>
               <Input
                 id="password"
-                placeholder="Enter your password!"
+                placeholder="Enter your password..."
                 type="password"
                 required
                 value={password}
@@ -100,12 +101,45 @@ export default function Login() {
             </Button>
           </CardContent>
         </form>
-        <div className="text-center mt-4">
-          <Button className="w-full" onClick={handleGoogleSignIn}>
-            Sign In with Google
-          </Button>
-        </div>
-        <CardFooter className="text-center text-sm text-muted-foreground">
+        <CardContent>
+          <div className="flex items-center">
+            <hr className="flex-grow text-gray-500" />
+            <p className="mx-2 text-gray-600 font-light text-sm">
+              OR CONTINUE WITH
+            </p>
+            <hr className="flex-grow text-gray-500" />
+          </div>
+
+          <div className="text-center mt-4 flex space-x-4">
+            <Button
+              className="w-full"
+              variant="outline"
+              onClick={handleGoogleSignIn}
+            >
+              <Image
+                src="/img/icons8-google-90.png"
+                height={20}
+                width={20}
+                className="mr-2"
+              />
+              Google
+            </Button>
+            <Button
+              className="w-full"
+              variant="outline"
+              onClick={handleGoogleSignIn}
+            >
+              <Image
+                src="/img/icons8-github-90.png"
+                height={20}
+                width={20}
+                className="mr-2"
+              />
+              GitHub
+            </Button>
+          </div>
+        </CardContent>
+        <CardFooter className="text-sm text-muted-foreground text-center">
           Don't have an account?{" "}
           <Link
             href="/Signup"
@@ -119,4 +153,3 @@ export default function Login() {
     </div>
   );
 }
-
