@@ -40,78 +40,184 @@ export default function Component() {
 
   return (
     <>
-      <div>
-        <div className="flex items-center justify-center min-h-screen bg-[url('/subtle-pattern.svg')] bg-cover bg-center">
-          <div className="w-full max-w-md p-6 bg-background rounded-lg shadow-lg">
-            <h1 className="text-3xl font-bold mb-6 text-center font-josefin">Hamro Furniture</h1>    
-            {error && <p className="text-red-500 text-center">{error}</p>}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+      <motion.div
+        className="flex flex-1 flex-col justify-center px-6 py-2 lg:px-8 items-center min-h-screen mx-auto"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -50 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          {/* <Link href="/">
+          <Image
+            className="mx-auto h-24 w-auto"
+            src="/Image/logo1.png"
+            alt="Your Company"
+          />
+        </Link> */}
+          <Link href="/">
+            <ul>
+              <li className="flex-shrink-0 text-3xl text-center font-bold font-great-vibes font-josefin">
+                Hamro Furniture
+              </li>
+            </ul>
+          </Link>
+          <h2 className="text-center font-bold leading-9 tracking-tight text-gray-900 font-david-libre text-lg p-4 font-great-vibes">
+            <span className="">
+              Create
+            </span>{" "}
+            Your New{" "}
+            <span className="">
+              Account
+            </span>
+            {error && (
+              <p className="text-sm bg-red-500 text-white p-3 rounded-xl m-2">
+                {error}
+              </p>
+            )}
+          </h2>
+        </div>
+
+        <div className="min-h-full md:bg-white md:rounded-lg md:p-10 md:shadow-md md:border md:border-gray-100 md:max-w-lg w-full sm:max-w-sm">
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              <div className="md:flex space-x-3 ">
                 <div>
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input
-                    id="firstName"
-                    placeholder="John"
-                    required
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
+                  <label
+                    htmlFor="firstName"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    First Name
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      autoComplete="text"
+                      placeholder="Your First Name"
+                      required
+                      onChange={(e) => setFirstName(e.target.value)}
+                      className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-3"
+                    />
+                  </div>
                 </div>
                 <div>
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input
-                    id="lastName"
-                    placeholder="Doe"
-                    required
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
+                  <label
+                    htmlFor="lastName"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Last Name
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      autoComplete="text"
+                      placeholder="Your Last Name..."
+                      required
+                      onChange={(e) => setLastName(e.target.value)}
+                      className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-3"
+                    />
+                  </div>
                 </div>
               </div>
               <div>
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="john@example.com"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  📩 Email address
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="Enter your email..."
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-3"
+                  />
+                </div>
               </div>
+
               <div>
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <div className="flex items-center justify-between">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    🔐 New Password
+                  </label>
+                </div>
+                <div className="mt-2">
+                  <input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    autoComplete="current-password"
+                    placeholder="Enter your new password..."
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-3"
+                  />
+                </div>
               </div>
+
               <div>
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  required
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
+                <div className="flex items-center justify-between">
+                  <label
+                    htmlFor="confirmPassword"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    🔐 Confirm Password
+                  </label>
+                </div>
+                <div className="mt-2">
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type={showPassword ? "text" : "password"}
+                    autoComplete="current-password"
+                    placeholder="Confirm your password..."
+                    required
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-3"
+                  />
+                </div>
               </div>
-              <Button type="submit" className="w-full">
-                Sign Up
-              </Button>
+
+              <div className="flex items-center space-x-2 pl-2">
+                <input
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={() => setShowPassword(!showPassword)}
+                  className="w-4 h-4"
+                />
+                <p className="text-sm">Show password</p>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  className="flex w-full justify-center rounded-mdpx-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-800 bg-gray-900 rounded-md focus-visible:outline focus-visible:outline-2"
+                >
+                  Sign Up
+                </button>
+              </div>
             </form>
           </div>
         </div>
-        <p>
-          Already have an account?
-          <Link href="/Login">
-            <span>Login</span>
-          </Link>
+        <p className="mt-6 text-center text-md text-gray-500">
+          Already have an account?{" "}
+          <span className="font-semibold leading-6 text-gray-800">
+            <Link href="/Login">Login</Link>
+          </span>
         </p>
-      </div>
+      </motion.div>
     </>
   );
 }
