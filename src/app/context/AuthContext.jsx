@@ -48,6 +48,7 @@ export const AuthContextProvider = ({ children }) => {
       }
 
       return userCredential.user;
+
     } catch (error) {
       console.error("Error logging in user:", error);
       throw error;

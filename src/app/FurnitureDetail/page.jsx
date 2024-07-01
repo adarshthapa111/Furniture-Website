@@ -19,6 +19,7 @@ import Swal from "sweetalert2";
 import { supabase } from "../Supabase/config";
 import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
+import Recommand from "../components/Recommand";
 
 export default function FurnitureDetail() {
   const params = useSearchParams();
@@ -201,7 +202,7 @@ export default function FurnitureDetail() {
               zoomScale={1.1}
               // zoomSrc={image}
             />
-            {/* <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-4">
               <Image
                 src="/placeholder.svg"
                 alt="Product Image"
@@ -216,7 +217,7 @@ export default function FurnitureDetail() {
                 height={300}
                 className="aspect-square object-cover rounded-lg"
               />
-            </div> */}
+            </div>
           </div>
           <div className="grid gap-6">
             <div>
@@ -348,107 +349,9 @@ export default function FurnitureDetail() {
             </div>
           </div>
         </section>
-        <section className="max-w-6xl px-4 mx-auto py-12 lg:py-20">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8">
-            You May Also Like
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out">
-              <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
-                <span className="sr-only">View Product</span>
-              </Link>
-              <img
-                src="/placeholder.svg"
-                alt="Related Product"
-                width={400}
-                height={400}
-                className="aspect-square object-cover w-full group-hover:opacity-50 transition-opacity"
-              />
-              <div className="p-4">
-                <h3 className="font-semibold text-lg">
-                  Acme Minimalist Armchair
-                </h3>
-                <p className="text-muted-foreground">
-                  A complementary armchair to the Acme Minimalist Sofa.
-                </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="font-semibold">$899</span>
-                  <Button size="sm">Add to Cart</Button>
-                </div>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out">
-              <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
-                <span className="sr-only">View Product</span>
-              </Link>
-              <img
-                src="/placeholder.svg"
-                alt="Related Product"
-                width={400}
-                height={400}
-                className="aspect-square object-cover w-full group-hover:opacity-50 transition-opacity"
-              />
-              <div className="p-4">
-                <h3 className="font-semibold text-lg">
-                  Acme Minimalist Coffee Table
-                </h3>
-                <p className="text-muted-foreground">
-                  A sleek, modern coffee table to complete the set.
-                </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="font-semibold">$499</span>
-                  <Button size="sm">Add to Cart</Button>
-                </div>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out">
-              <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
-                <span className="sr-only">View Product</span>
-              </Link>
-              <img
-                src="/placeholder.svg"
-                alt="Related Product"
-                width={400}
-                height={400}
-                className="aspect-square object-cover w-full group-hover:opacity-50 transition-opacity"
-              />
-              <div className="p-4">
-                <h3 className="font-semibold text-lg">
-                  Acme Minimalist Bookshelf
-                </h3>
-                <p className="text-muted-foreground">
-                  A sleek, modular bookshelf to complement the collection.
-                </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="font-semibold">$699</span>
-                  <Button size="sm">Add to Cart</Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* <Recommand currentItemId={parseInt(id, 10)}/> */}
+        {id && <Recommand currentItemId={id} />}
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground">
-          &copy; 2024 Furniture Store. All rights reserved.
-        </p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link
-            href="#"
-            className="text-xs hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            Terms of Service
-          </Link>
-          <Link
-            href="#"
-            className="text-xs hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            Privacy
-          </Link>
-        </nav>
-      </footer>
     </div>
   );
 }

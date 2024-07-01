@@ -94,8 +94,8 @@ export default function Searchbar() {
                       onMouseDown={() => handleResultClick(result.id)}
                     >
                       <div className="flex items-center gap-2">
-                        <Image src={result.Image} height={40} width={40} className="rounded-sm border border-gray-400" alt={result.Name} />
-                        <span className="text-sm font-medium">{result.Name}</span>
+                        <Image src={result.Image} height={60} width={60} className="rounded-sm border border-gray-400 h-14 object-cover" alt={result.Name} />
+                        <span className="text-xl font-medium font-josefin">{result.Name}</span>
                       </div>
                     </li>
                   ))

@@ -20,21 +20,24 @@ export default function Home() {
               <CarouselItem className="flex justify-center items-center">
                 <Image
                   src="/img/vector2.png"
-                  className="h-96 w-96"
+                  className="h-96 w-[600px]"
                   height={1200}
-                  width={1200}
+                  width={600}
                 />
                 <p className="text-xl md:text-4xl xl:text-6xl font-semibold text-white font-josefin hidden xl:inline">
                   Grab your chair with us 40% this Friday !{" "}
                 </p>
               </CarouselItem>
-              <CarouselItem className="">
+              <CarouselItem className="flex justify-center items-center">
                 <Image
                   src="/img/vector1.png"
                   className="h-96 w-96"
                   height={1200}
-                  width={1200}
+                  width={600}
                 />
+                <p className="text-xl md:text-4xl xl:text-6xl font-semibold text-white font-josefin hidden xl:inline">
+                  Grab our latest Sofa with 20% discount !{" "}
+                </p>
               </CarouselItem>
               <CarouselItem>
                 <Image
