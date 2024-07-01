@@ -262,28 +262,35 @@ const AddFurniture = () => {
   const [length, setLength] = useState("");
   const [breadth, setBreadth] = useState("");
   const [height, setHeight] = useState("");
-  const [images, setImages] = useState([]); // Change to store multiple file objects
+  const [images, setImages] = useState([[], [], []]); // State to store multiple file objects
 
-  const handleImageChange = (e) => {
-    setImages(Array.from(e.target.files)); // Store multiple file objects
+  const handleImageChange = (index, e) => {
+    const files = Array.from(e.target.files);
+    let updatedImages = [...images];
+    updatedImages[index] = files;
+    setImages(updatedImages);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let imageUrls = [];
-      if (images.length > 0) {
-        const uploadPromises = images.map((image) => {
-          return supabase.storage
-            .from("images")
-            .upload(`public/${Date.now()}_${image.name}`, image)
-            .then(({ data, error }) => {
-              if (error) throw error;
-              return `https://nktogubqeimhncnpqjwk.supabase.co/storage/v1/object/public/images/${data.path}`;
-            });
-        });
-        imageUrls = await Promise.all(uploadPromises);
-      }
+      const uploadPromises = images.map(async (imageList, index) => {
+        if (imageList.length > 0) {
+          const result = await Promise.all(imageList.map((image) => {
+            return supabase.storage
+              .from("images")
+              .upload(`public/${Date.now()}_${image.name}`, image)
+              .then(({ data, error }) => {
+                if (error) throw error;
+                return `https://nktogubqeimhncnpqjwk.supabase.co/storage/v1/object/public/images/${data.path}`;
+              });
+          }));
+          imageUrls[index] = result;
+        }
+      });
+
+      await Promise.all(uploadPromises);
 
       const { data, error } = await supabase.from("Furnitures").insert([
         {
@@ -295,9 +302,9 @@ const AddFurniture = () => {
           Length: length,
           Breadth: breadth,
           Height: height,
-          Image: imageUrls[0] || null,
-          Image1: imageUrls[1] || null,
-          Image2: imageUrls[2] || null,
+          Image: imageUrls[0] ? imageUrls[0][0] : null,
+          Image1: imageUrls[1] ? imageUrls[1][0] : null,
+          Image2: imageUrls[2] ? imageUrls[2][0] : null,
         },
       ]);
 
@@ -317,7 +324,7 @@ const AddFurniture = () => {
         setLength("");
         setBreadth("");
         setHeight("");
-        setImages([]); // Reset the image state
+        setImages([[], [], []]); // Reset the image state
       }
     } catch (err) {
       console.log("Error submitting data!", err);
@@ -442,12 +449,23 @@ const AddFurniture = () => {
                 </div>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="images">Images</Label>
+                <Label htmlFor="image1">Image 1</Label>
                 <Input
-                  id="images"
+                  id="image1"
                   type="file"
-                  multiple
-                  onChange={handleImageChange}
+                  onChange={(e) => handleImageChange(0, e)}
+                />
+                <Label htmlFor="image2">Image 2</Label>
+                <Input
+                  id="image2"
+                  type="file"
+                  onChange={(e) => handleImageChange(1, e)}
+                />
+                <Label htmlFor="image3">Image 3</Label>
+                <Input
+                  id="image3"
+                  type="file"
+                  onChange={(e) => handleImageChange(2, e)}
                 />
               </div>
               <CardFooter className="flex justify-end">

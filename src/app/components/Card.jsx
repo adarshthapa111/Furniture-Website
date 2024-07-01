@@ -46,7 +46,7 @@ const Card = () => {
   if (loading) {
     return <Loader />;
   }
-  
+
   return (
     <div className="w-full max-w-6xl mx-auto mt-6">
       {/* <div className="grid grid-cols-3 gap-6">
@@ -136,6 +136,8 @@ const Card = () => {
                 Height: furniture.Height,
                 Category: furniture.Category,
                 Material: furniture.Material,
+                Image1: furniture.Image1,
+                Image2: furniture.Image2,
               },
             }}
           >

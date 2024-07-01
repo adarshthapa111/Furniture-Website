@@ -33,6 +33,8 @@ export default function FurnitureDetail() {
   const [price, setPrice] = useState("");
   const [material, setMaterial] = useState("");
   const [id, setID] = useState("");
+  const [image1, setImage1] = useState("");
+  const [image2, setImage2] = useState("");
   const { user: currentUser } = UserAuth();
 
   useEffect(() => {
@@ -47,6 +49,8 @@ export default function FurnitureDetail() {
       const id = params.get("ID");
       const price = params.get("Price");
       const material = params.get("Material");
+      const image1 = params.get("Image1");
+      const image2 = params.get("Image2");
 
       setImage(image);
       setName(name);
@@ -58,6 +62,8 @@ export default function FurnitureDetail() {
       setHeight(height);
       setID(id);
       setMaterial(material);
+      setImage1(image1);
+      setImage2(image2);
     }
   }, [params]);
 
@@ -203,14 +209,14 @@ export default function FurnitureDetail() {
             />
             <div className="grid md:grid-cols-2 gap-4">
               <Image
-                src={image}
+                src={image1}
                 alt="Product Image"
                 width={300}
                 height={300}
                 className="aspect-square object-cover rounded-lg"
               />
               <Image
-                src={image}
+                src={image2}
                 alt="Product Image"
                 width={300}
                 height={300}
@@ -323,7 +329,7 @@ export default function FurnitureDetail() {
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
               <div>
                 <img
-                  src={image}
+                  src={image1}
                   alt="Product Detail"
                   width={600}
                   height={400}
@@ -336,7 +342,7 @@ export default function FurnitureDetail() {
               </div>
               <div>
                 <img
-                  src={image}
+                  src={image2}
                   alt="Product Detail"
                   width={600}
                   height={400}
