@@ -6,10 +6,11 @@ import { Button } from "../components/ui/button";
 import Image from "next/image";
 import Filter from "../components/Filter";
 import Link from "next/link";
-
+import Loader from "./Loader";
 const Card = () => {
   const [furnitures, setFurnitures] = useState([]);
   const [furnitureError, setFurnituresError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,9 +20,11 @@ const Card = () => {
         if (error) {
           setFurnitures([]);
           setFurnituresError(error.message);
+          setLoading(false);
         } else {
           setFurnitures(data);
           setFurnituresError(null);
+          setLoading(false);
         }
       } catch (err) {
         console.log(err, "Error fetching data!!");
@@ -40,6 +43,10 @@ const Card = () => {
     );
   }
 
+  if (loading) {
+    return <Loader />;
+  }
+  
   return (
     <div className="w-full max-w-6xl mx-auto mt-6">
       {/* <div className="grid grid-cols-3 gap-6">

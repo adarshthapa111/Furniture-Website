@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "../components/ui/button";
 import { useEffect, useState } from "react";
 import { supabase } from "../Supabase/config";
+import Image from "next/image";
 
 const Recommand = ({ currentItemId }) => {
   const [recFurnitures, setRecFurnitures] = useState([]);
@@ -78,7 +79,7 @@ const Recommand = ({ currentItemId }) => {
     scores.sort((a, b) => b.score - a.score);
     return scores.filter((score) => score.score > 0).map((score) => score.item);
   };
-  
+
 
   return (
     <div>
@@ -92,7 +93,7 @@ const Recommand = ({ currentItemId }) => {
           {recFurnitures.map((furniture) => (
             <div
               key={furniture.id}
-              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out"
+              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out border border-gray-200"
             >
               <Link
                 href={`/furniture/${furniture.id}`}
@@ -101,12 +102,12 @@ const Recommand = ({ currentItemId }) => {
               >
                 <span className="sr-only">View Product</span>
               </Link>
-              <img
+              <Image
                 src={furniture.Image || "/placeholder.svg"}
                 alt={furniture.Name}
-                width={400}
-                height={400}
-                className="aspect-square object-cover w-full group-hover:opacity-50 transition-opacity"
+                width={500}
+                height={600}
+                className="aspect-square h-64 w-full object-cover group-hover:opacity-50 transition-opacity"
               />
               <div className="p-4">
                 <h3 className="font-semibold text-lg">{furniture.Name}</h3>

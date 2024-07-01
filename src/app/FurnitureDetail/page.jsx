@@ -195,23 +195,22 @@ export default function FurnitureDetail() {
             <InnerImageZoom
               src={image}
               alt="Product Image"
-              width={500}
-              height={800}
-              className="aspect-square object-c rounded-lg border  border-gray-300 shadow-md"
+              width={540}
+              height={500}
+              className="aspect-square object-c rounded-lg border h-96 border-gray-300 shadow-md"
               zoomType="hover"
               zoomScale={1.1}
-              // zoomSrc={image}
             />
             <div className="grid md:grid-cols-2 gap-4">
               <Image
-                src="/placeholder.svg"
+                src={image}
                 alt="Product Image"
                 width={300}
                 height={300}
                 className="aspect-square object-cover rounded-lg"
               />
               <Image
-                src="/placeholder.svg"
+                src={image}
                 alt="Product Image"
                 width={300}
                 height={300}
@@ -224,7 +223,9 @@ export default function FurnitureDetail() {
               <h1 className="text-3xl sm:text-4xl font-bold font-josefin">
                 {name}
               </h1>
-              <p className="text-muted-foreground text-lg">{description}</p>
+              <p className="text-muted-foreground text-lg text-justify">
+                {description}
+              </p>
             </div>
             <div className="grid gap-4">
               <div>
@@ -316,17 +317,17 @@ export default function FurnitureDetail() {
         </section>
         <section className="bg-muted py-12 lg:py-20">
           <div className="max-w-6xl px-4 mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 font-josefin">
               More Details
             </h2>
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
               <div>
                 <img
-                  src="/placeholder.svg"
+                  src={image}
                   alt="Product Detail"
                   width={600}
                   height={400}
-                  className="aspect-[3/2] object-cover rounded-lg"
+                  className="aspect-[3/2] object-cover rounded-lg shadow-md border border-gray-300 cursor-pointer"
                 />
                 <p className="mt-4 text-muted-foreground">
                   Crafted with premium materials, this sofa features a solid oak
@@ -335,11 +336,11 @@ export default function FurnitureDetail() {
               </div>
               <div>
                 <img
-                  src="/placeholder.svg"
+                  src={image}
                   alt="Product Detail"
                   width={600}
                   height={400}
-                  className="aspect-[3/2] object-cover rounded-lg"
+                  className="aspect-[3/2] object-cover rounded-lg shadow-md border border-gray-300 cursor-pointer"
                 />
                 <p className="mt-4 text-muted-foreground">
                   The clean, minimalist design of this sofa allows it to
