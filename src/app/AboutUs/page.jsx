@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Card, CardContent } from "../components/ui/card";
+import Image from "next/image";
 import { Avatar, AvatarImage, AvatarFallback } from "../components/ui/avatar";
 
 export default function AboutUs() {
@@ -65,28 +65,28 @@ export default function AboutUs() {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <img
+              <Image
                 src="/img/vector6.png"
                 alt="Furniture"
                 width={300}
                 height={300}
                 className="rounded-t-full rounded-bl-full object-cover border border-gray-300 shadow-md bg-gray-200"
               />
-              <img
+              <Image
                 src="/img/vector1.png"
                 alt="Team"
                 width={300}
                 height={300}
                 className="rounded-t-full rounded-br-full object-cover border border-gray-300 shadow-md bg-gray-200"
               />
-              <img
+              <Image
                 src="/img/vector2.png"
                 alt="Furniture"
                 width={300}
                 height={300}
                 className="rounded-b-full rounded-tl-full object-cover bg-gray-200"
               />
-              <img
+              <Image
                 src="/img/vector5.png"
                 alt="Team"
                 width={300}

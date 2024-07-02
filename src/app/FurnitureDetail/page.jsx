@@ -20,6 +20,7 @@ import { supabase } from "../Supabase/config";
 import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import Recommand from "../components/Recommand";
+import RatingAndReview from "../components/RatingAndReview";
 
 export default function FurnitureDetail() {
   const params = useSearchParams();
@@ -359,6 +360,8 @@ export default function FurnitureDetail() {
         {/* <Recommand currentItemId={parseInt(id, 10)}/> */}
         {id && <Recommand currentItemId={id} />}
       </main>
+
+      {id && <RatingAndReview furnitureId={id} />}
     </div>
   );
 }
