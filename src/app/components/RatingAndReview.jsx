@@ -468,17 +468,22 @@ import { UserAuth } from "../context/AuthContext";
 import { ref, get } from "firebase/database";
 import StarRating from "./StarRating";
 import Image from "next/image";
-
+import { motion } from "framer-motion";
 const RatingAndReview = ({ furnitureId }) => {
   //Use state management
   const [rating, setRating] = useState("5");
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
-  const [reviews, setReviews] = useState([]); // Initialize with an empty array
+  const [reviews, setReviews] = useState([]);
   const [fetchError, setFetchError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoved, setIsLoved] = useState(false);
   const itemsPerPage = 6;
   const { user: currentUser } = UserAuth();
+
+  const handleLoveClick = () => {
+    setIsLoved(!isLoved);
+  };
 
   //   Data Fetching from Rating and Review
   useEffect(() => {
@@ -558,11 +563,11 @@ const RatingAndReview = ({ furnitureId }) => {
 
   return (
     <div>
-      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-16">
         <div className="grid gap-12">
           <div className="grid gap-6">
             <div className="grid gap-2">
-              <h2 className="text-2xl font-bold font-great-vibes">
+              <h2 className="text-3xl font-bold font-great-vibes font-josefin">
                 Submit a Review
               </h2>
               <p className="text-gray-500 dark:text-gray-400">
@@ -752,40 +757,72 @@ const RatingAndReview = ({ furnitureId }) => {
           )}
           <div className="grid gap-6 md:gap-8">
             {currentItems.map((review) => (
-              <div className="flex items-start gap-4" key={review.id}>
-                <div className=" rounded-full">
-                  <Image
-                    src="/img/icon.png"
-                    alt="@username"
-                    className="h-12 w-12"
-                    height={40}
-                    width={40}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <div className="flex items-center gap-2">
-                    <div className="font-medium capitalize">
-                      {review.FirstName + " " + review.LastName}
-                      {console.log(review.FirstName + " " + review.LastName)}
-                    </div>
-                    <div>
-                      <StarRating rating={review.Rating} />
-                    </div>
+              <>
+                <div className="flex items-start gap-4" key={review.id}>
+                  <div className=" rounded-full">
+                    <Image
+                      src="/img/icon.png"
+                      alt="@username"
+                      className="h-12 w-12"
+                      height={40}
+                      width={40}
+                    />
                   </div>
-                  <h3 className="text-lg font-semibold capitalize">
-                    {review.Title}
-                  </h3>
-                  <p className="text-gray-500 dark:text-gray-400 capitalize">
-                    {review.Review}
-                  </p>
+                  <div className="grid gap-2">
+                    <div className="flex items-center gap-2">
+                      <div className="font-medium capitalize">
+                        {review.FirstName + " " + review.LastName}
+                        {console.log(review.FirstName + " " + review.LastName)}
+                      </div>
+                      <div>
+                        <StarRating rating={review.Rating} />
+                      </div>
+                    </div>
+                    <h3 className="text-lg font-semibold capitalize">
+                      {review.Title}
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-400 capitalize">
+                      {review.Review}
+                    </p>
+                  </div>
                 </div>
-              </div>
+                <div className="flex items-center space-x-4 ml-16">
+                  <div onClick={handleLoveClick} className="cursor-pointer">
+                    {isLoved ? (
+                      <motion.div
+                        initial={{ scale: 1 }}
+                        animate={{ scale: [1, 1.5, 1] }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Image
+                          src="/img/red-love.png"
+                          height={24}
+                          width={24}
+                          alt="Loved"
+                        />
+                      </motion.div>
+                    ) : (
+                      <motion.div>
+                        <Image
+                          src="/img/ifav.png"
+                          height={24}
+                          width={24}
+                          alt="Not Loved"
+                        />
+                      </motion.div>
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-md text-gray-400">reply</p>
+                  </div>
+                </div>
+              </>
             ))}
             <div className="flex justify-between gap-4">
               <button
                 onClick={handlePreviousPage}
                 disabled={currentPage === 1}
-                className={`px-4 py-2 text-sm font-semibold text-gray-700 transition-all duration-200 border border-transparent rounded-md shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 ${
+                className={`px-4 py-2 text-sm font-semibold text-gray-700 transition-all duration-200 border border-transparent rounded-md shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 border-gray-300 ${
                   currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >
@@ -794,7 +831,7 @@ const RatingAndReview = ({ furnitureId }) => {
               <button
                 onClick={handleNextPage}
                 disabled={currentPage * itemsPerPage >= reviews.length}
-                className={`px-4 py-2 text-sm font-semibold text-gray-700 transition-all duration-200 border border-transparent rounded-md shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 ${
+                className={`px-4 py-2 text-sm font-semibold text-gray-700 transition-all duration-200 border border-transparent rounded-md shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 border-gray-300${
                   currentPage * itemsPerPage >= reviews.length
                     ? "opacity-50 cursor-not-allowed"
                     : ""
@@ -812,7 +849,7 @@ const RatingAndReview = ({ furnitureId }) => {
 
 const StarIcon = ({ className }) => (
   <svg
-    className={`w-5 h-5 fill-current text-red-600 ${className}`}
+    className={`w-5 h-5 fill-current text-gray-800 ${className}`}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
