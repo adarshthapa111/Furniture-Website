@@ -11,6 +11,8 @@ const Card = () => {
   const [furnitures, setFurnitures] = useState([]);
   const [furnitureError, setFurnituresError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,81 +49,26 @@ const Card = () => {
     return <Loader />;
   }
 
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    window.scrollTo(0, 0);
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) =>
+      prevPage * itemsPerPage < furnitures.length ? prevPage + 1 : prevPage
+    );
+    window.scrollTo(0, 0);
+  };
+
+  const startPage = (currentPage - 1) * itemsPerPage;
+  const currentItems = furnitures.slice(startPage, startPage + itemsPerPage);
+
   return (
     <div className="w-full max-w-6xl mx-auto mt-6">
-      {/* <div className="grid grid-cols-3 gap-6">
-        {furnitures.length > 0 && (
-          <Link
-          href={{
-            pathname: "FurnitureDetail",
-            query: {
-              ID: furnitures[0].id,
-              Image: furnitures[0].Image,
-              Name: furnitures[0].Name,
-              Description: furnitures[0].Description,
-              Price: furnitures[0].Price,
-              Length: furnitures[0].Length,
-              Width: furnitures[0].Breadth,
-              Height: furnitures[0].Height,
-              Category: furnitures[0].Category,
-              Material: furnitures[0].Material,
-            },
-          }}
-          >
-          <div
-          className="bg-background rounded-lg shadow-lg overflow-hidden"
-          key={furnitures[0].id}
-          >
-          <Image
-          src={furnitures[0].Image}
-          alt="Furniture Item"
-          width={500}
-          height={400}
-          className="w-full h-56 object-cover"
-          />
-          <div className="p-6 space-y-4">
-          <h3 className="text-xl font-bold font-josefin">
-          {furnitures[0].Name}
-          </h3>
-          <div className="flex items-center gap-2">
-          <div className="flex items-center gap-0.5">
-          <StarIcon className="w-5 h-5 fill-primary" />
-          <StarIcon className="w-5 h-5 fill-primary" />
-          <StarIcon className="w-5 h-5 fill-primary" />
-          <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
-          <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
-          </div>
-          <span className="text-muted-foreground text-sm">(4.3)</span>
-          </div>
-          <p
-          className="text-muted-foreground text-sm text-justify"
-          style={{
-            maxHeight: "2.8em",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "-webkit-box",
-            WebkitLineClamp: "2",
-            WebkitBoxOrient: "vertical",
-          }}
-          >
-          {furnitures[0].Description}
-          </p>
-          <div className="flex items-center justify-between">
-          <span className="text-xl font-bold">
-          Rs.{furnitures[0].Price}
-          </span>
-          <Button variant="outline" size="sm">
-          Add to Cart
-          </Button>
-          </div>
-          </div>
-          </div>
-          </Link>
-          )}
-        </div> */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
         <Filter />
-        {furnitures.map((furniture) => (
+        {currentItems.map((furniture) => (
           <Link
             href={{
               pathname: "FurnitureDetail",
@@ -192,6 +139,22 @@ const Card = () => {
             </div>
           </Link>
         ))}
+      </div>
+      <div className="flex justify-between mt-8">
+        <button
+          className="px-4 py-2 mx-2 text-white bg-blue-600 rounded shadow-lg shadow-white disabled:bg-gray-300"
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <button
+          className="px-4 py-2 mx-2 text-white bg-blue-600 rounded disabled:bg-gray-300"
+          onClick={handleNextPage}
+          disabled={currentPage * itemsPerPage >= furnitures.length}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

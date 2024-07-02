@@ -21,7 +21,6 @@ import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import Recommand from "../components/Recommand";
 import RatingAndReview from "../components/RatingAndReview";
-import ReactImageMagnify from "react-image-magnify";
 
 export default function FurnitureDetail() {
   const params = useSearchParams();
@@ -68,12 +67,6 @@ export default function FurnitureDetail() {
       setImage2(image2);
     }
   }, [params]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.MagicZoomPlus) {
-      window.MagicZoomPlus.refresh();
-    }
-  }, [image]);
 
   const handleFavourite = async () => {
     const result = await Swal.fire({
@@ -207,26 +200,14 @@ export default function FurnitureDetail() {
         <section className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-12 lg:py-20">
           <div className="grid gap-6">
             <div className="relative">
-              <ReactImageMagnify
-                {...{
-                  smallImage: {
-                    alt: "Product Image",
-                    isFluidWidth: true,
-                    src: image,
-                    className: 'rounded-xl',
-                  },
-                  largeImage: {
-                    src: image,
-                    width: 1600,
-                    height: 2400,
-                  },
-                  imageClassName: 'rounded-xl',
-                  enlargedImagePosition: "beside", // or 'over'
-                  enlargedImageContainerDimensions: {
-                    width: "200%", // Adjust as needed
-                    height: "150%", // Adjust as needed
-                  },
-                }}
+              <InnerImageZoom
+                src={image}
+                alt="Product Image"
+                width={540}
+                height={500}
+                className="object-cover rounded-lg border h-96 border-gray-300 shadow-md"
+                zoomType="hover"
+                zoomScale={1.2}
               />
             </div>
             <div className="grid md:grid-cols-2 gap-4">
@@ -332,9 +313,11 @@ export default function FurnitureDetail() {
                   Add to Cart
                 </Button>
                 <Link href="/Customization">
-                  <Button size="lg" variant="outline">
-                    Customize
-                  </Button>
+                  <Link href={`/Customization/${id}`}>
+                    <Button size="lg" variant="outline">
+                      Customize
+                    </Button>
+                  </Link>
                 </Link>
                 <Button size="lg" onClick={handleFavourite}>
                   Add to Favourite

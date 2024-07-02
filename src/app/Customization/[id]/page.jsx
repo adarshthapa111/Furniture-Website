@@ -7,10 +7,50 @@ import {
   SelectValue,
   SelectContent,
   SelectItem,
-} from "../components/ui/select";
-import { Button } from "../components/ui/button";
+} from "../../components/ui/select";
+import { Button } from "../../components/ui/button";
+import { supabase } from "../../Supabase/config";
+import Image from "next/image";
+import { useEffect } from "react";
+import { useParams } from "next/navigation"; // Use useParams instead of useRouter
 
 export default function Component() {
+  const [furnitureData, setFurnitureData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { id } = useParams(); // Access the dynamic route parameter
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const { data, error } = await supabase
+          .from("Furnitures")
+          .select("*")
+          .eq("id", id)
+          .single(); // Fetch a single item based on id
+
+        if (error) throw error;
+
+        setFurnitureData(data);
+      } catch (error) {
+        setError("Error fetching furniture data");
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+
   const [selectedFurniture, setSelectedFurniture] = useState({
     type: "sofa",
     color: "gray",
@@ -46,13 +86,15 @@ export default function Component() {
     <div className="grid grid-cols-[1fr_300px] h-screen w-full max-w-6xl mx-auto">
       <div className="flex flex-col items-center justify-center bg-muted/40 p-8">
         <div className="relative w-full max-w-3xl">
-          <img
-            src="/img/vector3.png"
-            alt={`Customized ${selectedFurniture.type}`}
-            width={800}
-            height={600}
-            className="rounded-lg object-cover"
-          />
+          {customizedImage && (
+            <Image
+              src={customizedImage}
+              alt={`Customized ${selectedFurniture.type}`}
+              width={800}
+              height={600}
+              className="rounded-lg object-cover"
+            />
+          )}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="grid gap-4">
               <div className="flex items-center gap-2">
@@ -126,10 +168,10 @@ export default function Component() {
           </div>
         </div>
       </div>
-      <div className="border-l bg-background p-6 shadow-md border border-gray-400">
+      <div className="p-6">
         <div className="grid gap-6">
           <div>
-            <h2 className="text-lg font-semibold font-josefin text-center  border border-gray-300 p-1 rounded-xl">
+            <h2 className="text-lg font-semibold font-josefin text-center p-1 rounded-xl">
               Current Customization
             </h2>
             <div className="grid gap-2 pt-2">
