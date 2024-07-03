@@ -9,6 +9,8 @@ import {
   CarouselPrevious,
 } from "@/app/components/ui/carousel";
 import Card from "./components/Card";
+import FeatureProducts from "./components/FeatureProducts";
+import LatestProducts from "./components/LatestProducts";
 
 export default function Home() {
   return (
@@ -161,12 +163,24 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="py-12 md:py-16 lg:py-20 max-w-6xl mx-auto">
-            <div className="container px-4 md:px-6">
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 font-josefin">
+          <section className="bg-gradient-to-t from-gray-200 to-transparent grid items-center min-h-screen  py-3">
+            <div className="mt-10 py-4 max-w-6xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 font-josefin px-4 md:px-8">
                 Featured
               </h2>
-              <Card />
+              <div>
+                <FeatureProducts />
+              </div>
+            </div>
+          </section>
+          <section className="mt-10 py-4 max-w-6xl mx-auto">
+            <div className="">
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 font-josefin px-4 md:px-6">
+                Latest
+              </h2>
+              <div>
+                <LatestProducts />
+              </div>
             </div>
           </section>
         </section>

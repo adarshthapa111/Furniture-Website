@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { Label } from "../components/ui/label";
@@ -216,14 +215,14 @@ export default function FurnitureDetail() {
                 alt="Product Image"
                 width={300}
                 height={300}
-                className="aspect-square object-cover rounded-lg"
+                className="aspect-square object-cover rounded-lg border"
               />
               <Image
                 src={image2}
                 alt="Product Image"
                 width={300}
                 height={300}
-                className="aspect-square object-cover rounded-lg"
+                className="aspect-square object-cover rounded-lg border"
               />
             </div>
           </div>
