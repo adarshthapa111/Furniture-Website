@@ -18,11 +18,11 @@ export default function Component() {
                 height={400}
                 className="object-cover w-full h-64"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gray-400 to-transparent p-4">
-                <h3 className="text-xl font-bold text-foreground">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gray-600 to-transparent p-4">
+                <h3 className="text-xl font-bold text- text-white">
                   Minimalist Armchair
                 </h3>
-                <p className="text-sm  text-gray-800">
+                <p className="text-sm  text-white">
                   Elegant and comfortable
                 </p>
               </div>
@@ -32,15 +32,15 @@ export default function Component() {
                 <span className="sr-only">View Product</span>
               </Link>
               <Image
-                src="/img/whiteChiar.webp"
+                src="/img/table.jpg"
                 alt="Product 2"
                 width={500}
                 height={400}
                 className="object-cover w-full h-64"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gray-500 to-transparent p-4">
-                <h3 className="text-xl font-bold text-foreground text-white">Sideboard</h3>
-                <p className="text-sm text-muted-foreground">Timeless design</p>
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gray-600 to-transparent p-4">
+                <h3 className="text-xl font-bold text-foreground text-white">Minimal Table</h3>
+                <p className="text-sm text-muted-foreground text-white">Timeless design</p>
               </div>
             </div>
             <div className="relative overflow-hidden rounded-lg shadow-lg group hover:shadow-xl hover:-translate-y-2 transition-transform duration-300">
@@ -48,17 +48,17 @@ export default function Component() {
                 <span className="sr-only">View Product</span>
               </Link>
               <Image
-                src="/img/whiteChiar.webp"
+                src="/img/singlebed.jpg"
                 alt="Product 3"
                 width={500}
                 height={400}
                 className="object-cover w-full h-64"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gray-400 to-transparent p-4">
-                <h3 className="text-xl font-bold text-foreground">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gray-600 to-transparent p-4">
+                <h3 className="text-xl font-bold text-foreground text-white">
                   Minimalist Armchair
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground text-white">
                   Elegant and comfortable
                 </p>
               </div>
@@ -68,17 +68,17 @@ export default function Component() {
                 <span className="sr-only">View Product</span>
               </Link>
               <Image
-                src="/img/whiteChiar.webp"
+                src="/img/bookrack.webp"
                 alt="Product 4"
                 width={500}
                 height={400}
                 className="object-cover w-full h-64"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gray-400 to-transparent p-4">
-                <h3 className="text-xl font-bold text-foreground">
-                   Sideboard
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gray-600 to-transparent p-4">
+                <h3 className="text-xl font-bold text-foreground text-white">
+                   Bookshelf
                 </h3>
-                <p className="text-sm text-muted-foreground">Timeless design</p>
+                <p className="text-sm text-muted-foreground text-white">Timeless design</p>
               </div>
             </div>
           </div>
