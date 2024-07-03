@@ -1,0 +1,51 @@
+[
+    {
+      "src": "/img/vector2.png",
+      "alt": "Chair with 40% discount",
+      "text": "Grab your chair with us 40% this Friday!",
+      "textClass": "text-xl w-1/2 text-gray-700 md:text-4xl xl:text-7xl font-bold font-josefin hidden xl:inline",
+      "containerClass": "flex justify-between items-center",
+      "imageClass": "h-96 w-1/2 object-contain"
+    },
+    {
+      "src": "/img/vector1.png",
+      "alt": "Sofa with 20% discount",
+      "text": "Grab our latest Sofa with 20% discount!",
+      "textClass": "text-xl w-1/2 text-gray-700 md:text-4xl xl:text-7xl font-bold font-josefin hidden xl:inline",
+      "containerClass": "flex justify-center items-center",
+      "imageClass": "h-96 w-96 object-cover"
+    },
+    {
+      "src": "/img/vector3.png",
+      "alt": "Vector Image 3",
+      "text": "Grab your chair with us 40% this Friday!",
+      "textClass": "text-xl w-1/2 text-gray-700 md:text-4xl xl:text-7xl font-bold font-josefin hidden xl:inline",
+      "containerClass": "",
+      "imageClass": "h-96 w-96"
+    },
+    {
+      "src": "/img/vector6.png",
+      "alt": "Vector Image 6",
+      "text": "Grab your chair with us 40% this Friday!",
+      "textClass": "text-xl w-1/2 text-gray-700 md:text-4xl xl:text-7xl font-bold font-josefin hidden xl:inline",
+      "containerClass": "",
+      "imageClass": "h-96 w-96"
+    },
+    {
+      "src": "/img/vector8.png",
+      "alt": "Vector Image 8",
+      "text": "Grab your chair with us 40% this Friday!",
+      "textClass": "text-xl w-1/2 text-gray-700 md:text-4xl xl:text-7xl font-bold font-josefin hidden xl:inline",
+      "containerClass": "",
+      "imageClass": "h-96 w-96"
+    },
+    {
+      "src": "/img/vector9.png",
+      "alt": "Vector Image 9",
+      "text": "Grab your chair with us 40% this Friday!",
+      "textClass": "text-xl w-1/2 text-gray-700 md:text-4xl xl:text-7xl font-bold font-josefin hidden xl:inline",
+      "containerClass": "",
+      "imageClass": "h-96 w-96"
+    }
+  ]
+  

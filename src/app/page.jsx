@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/app/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,68 +12,41 @@ import {
 import Card from "./components/Card";
 import FeatureProducts from "./components/FeatureProducts";
 import LatestProducts from "./components/LatestProducts";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [carouselData, setCarouselData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/carousel.json");
+      const data = await response.json();
+      setCarouselData(data);
+    };
+    fetchData();
+  },[]);
+  
   return (
     <>
       <div className="">
-        <section className="bg-gradient-to-b from-gray-800 via-gray-400 to gray-200">
+        <section className="bg-gradient-to-b from-gray-200 via-gray-200 to gray-200">
           <Carousel className="max-w-6xl mx-auto rounded-t-xl">
             <CarouselContent>
-              <CarouselItem className="flex justify-center items-center">
-                <Image
-                  src="/img/vector2.png"
-                  className="h-96 w-[600px]"
-                  height={1200}
-                  width={600}
-                />
-                <p className="text-xl md:text-4xl xl:text-6xl font-semibold text-white font-josefin hidden xl:inline">
-                  Grab your chair with us 40% this Friday !{" "}
-                </p>
-              </CarouselItem>
-              <CarouselItem className="flex justify-center items-center">
-                <Image
-                  src="/img/vector1.png"
-                  className="h-96 w-96"
-                  height={1200}
-                  width={600}
-                />
-                <p className="text-xl md:text-4xl xl:text-6xl font-semibold text-white font-josefin hidden xl:inline">
-                  Grab our latest Sofa with 20% discount !{" "}
-                </p>
-              </CarouselItem>
-              <CarouselItem>
-                <Image
-                  src="/img/vector3.png"
-                  className="h-96 w-96"
-                  height={1200}
-                  width={1200}
-                />
-              </CarouselItem>
-              <CarouselItem>
-                <Image
-                  src="/img/vector6.png"
-                  className="h-96 w-96"
-                  height={1200}
-                  width={1200}
-                />
-              </CarouselItem>
-              <CarouselItem>
-                <Image
-                  src="/img/vector8.png"
-                  className="h-96 w-96"
-                  height={1200}
-                  width={1200}
-                />
-              </CarouselItem>
-              <CarouselItem>
-                <Image
-                  src="/img/vector9.png"
-                  className="h-96 w-96"
-                  height={1200}
-                  width={1200}
-                />
-              </CarouselItem>
+              {carouselData.map((item, index) => (
+                <CarouselItem
+                  key={index}
+                  className="flex justify-between items-center"
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    className={item.imageClass}
+                    height={1200}
+                    width={600}
+                  />
+                  {item.text && <p className={item.textClass}>{item.text}</p>}
+                </CarouselItem>
+              ))}
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />

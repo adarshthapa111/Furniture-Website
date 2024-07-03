@@ -199,7 +199,9 @@ export default function AddToCart() {
           <p className="text-lg font-semibold md:text-3xl ">Total</p>
           <p className="text-2xl font-bold">Rs.{totalPrice}</p>
         </div>
+        <Link href="/Checkout">
         <Button className="w-full mt-4 p-6">Checkout</Button>
+        </Link>
       </div>
     </div>
   );
