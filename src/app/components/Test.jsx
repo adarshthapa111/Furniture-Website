@@ -1,147 +1,223 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/1uWel4L1BUf
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import Link from "next/link"
+"use client";
+
+import { useState, useEffect } from "react";
+import { Button } from "../components/ui/button";
+import Image from "next/image";
+import Swal from "sweetalert2";
+import { supabase } from "../Supabase/config";
+import { UserAuth } from "../context/AuthContext";
+import Link from "next/link";
 
 export default function Component() {
+  const [fetchError, setFetchError] = useState(null);
+  const [furnitures, setFurnitures] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const { user: currentUser } = UserAuth();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("CartItems")
+          .select("*")
+          .eq("UserId", currentUser.uid);
+        if (error) {
+          setFurnitures([]);
+          setFetchError(error.message);
+        } else {
+          setFurnitures(data);
+          setFetchError(null);
+        }
+      } catch (error) {
+        console.log("Error fetching data", error);
+        setFetchError("An unexpected error occurred.");
+      }
+    };
+
+    if (currentUser) {
+      fetchData();
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    const calculateTotalPrice = () => {
+      const total = furnitures.reduce((sum, item) => {
+        if (item.Price && item.quantity) {
+          return sum + item.Price * item.quantity;
+        }
+        return sum;
+      }, 0);
+      setTotalPrice(total);
+    };
+    calculateTotalPrice();
+  }, [furnitures]);
+
+  const handleIncreaseQuantity = async (itemId) => {
+    try {
+      const item = furnitures.find((item) => item.id === itemId);
+      const { data, error } = await supabase
+        .from("CartItems")
+        .update({ quantity: item.quantity + 1 })
+        .eq("id", itemId)
+        .select();
+
+      if (error) throw error;
+
+      setFurnitures(
+        furnitures.map((item) =>
+          item.id === itemId ? { ...item, quantity: data[0].quantity } : item
+        )
+      );
+    } catch (error) {
+      console.error("Error increasing quantity:", error);
+    }
+  };
+
+  const handleDecreaseQuantity = async (itemId) => {
+    try {
+      const item = furnitures.find((item) => item.id === itemId);
+      if (item.quantity > 1) {
+        const { data, error } = await supabase
+          .from("CartItems")
+          .update({ quantity: item.quantity - 1 })
+          .eq("id", itemId)
+          .select();
+
+        if (error) throw error;
+
+        setFurnitures(
+          furnitures.map((item) =>
+            item.id === itemId ? { ...item, quantity: data[0].quantity } : item
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Error decreasing quantity:", error);
+    }
+  };
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Do you want to delete it?",
+      text: "You cannot undo this action",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "red",
+      cancelButtonColor: "black",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const { error } = await supabase
+            .from("CartItems")
+            .delete()
+            .eq("id", id);
+          if (error) {
+            console.log("Error while deleting");
+          } else {
+            setFurnitures(furnitures.filter((item) => item.id !== id));
+            Swal.fire({
+              title: "Successfully Deleted",
+              text: "Item has been deleted successfully",
+              icon: "success",
+              confirmButtonColor: "black",
+            });
+          }
+        } catch (err) {
+          console.log("Error Occurred", err);
+        }
+      }
+    });
+  };
+
   return (
-    <div className="flex flex-col min-h-[100dvh]">
-      <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
-            <img
-              src="/placeholder.svg"
-              width="550"
-              height="550"
-              alt="Founder"
-              className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full"
-            />
-            <div className="space-y-4">
-              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">About Us</div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Crafting Timeless Furniture
-              </h1>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                At our furniture workshop, we are dedicated to creating high-quality, handcrafted pieces that stand the
-                test of time. Led by our founder, Jane Doe, we take pride in our attention to detail and commitment to
-                sustainable practices.
-              </p>
-            </div>
-          </div>
-        </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-          <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
-            <div className="space-y-4">
-              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Our History</div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">A Legacy of Craftsmanship</h2>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Our furniture workshop was founded in 1985 by Jane Doe, a skilled woodworker with a passion for creating
-                beautiful, functional pieces. Over the years, we have honed our craft, using traditional techniques and
-                the finest materials to produce timeless designs that are built to last.
-              </p>
-            </div>
-            <img
-              src="/placeholder.svg"
-              width="550"
-              height="550"
-              alt="Workshop"
-              className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full"
-            />
-          </div>
-        </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
-            <img
-              src="/placeholder.svg"
-              width="550"
-              height="550"
-              alt="Craftsmanship"
-              className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full"
-            />
-            <div className="space-y-4">
-              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Our Values</div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Commitment to Craftsmanship
-              </h2>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                At the heart of our business is a deep respect for the craft of furniture making. We believe in using
-                only the finest materials and employing traditional techniques to create pieces that are not only
-                beautiful, but also built to last. Our commitment to quality and sustainability is reflected in every
-                piece we produce.
-              </p>
-            </div>
-          </div>
-        </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-          <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
-            <div className="space-y-4">
-              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Our Team</div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Meet the Makers</h2>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Our team of skilled artisans and designers are the heart and soul of our business. Each member brings a
-                unique set of talents and experiences, contributing to the creation of our high-quality, handcrafted
-                furniture.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col items-center gap-2">
-                <Avatar>
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback>JD</AvatarFallback>
-                </Avatar>
-                <div className="text-center">
-                  <p className="text-sm font-medium leading-none">John Doe</p>
-                  <p className="text-sm text-muted-foreground">Master Woodworker</p>
+    <div className="container mx-auto max-w-6xl px-4 md:px-6 grid gap-8 py-6">
+      <div className="grid gap-6 rounded-lg p-2">
+        <h1 className="text-3xl font-bold tracking-tight font-josefin">
+          Your Cart
+        </h1>
+        {fetchError && <p className="text-red-500">{fetchError}</p>}
+        <div className="grid gap-6">
+          {furnitures.map((item) => (
+            <div
+              key={item.id}
+              className="grid md:grid-cols-[200px_1fr_auto] gap-6 items-start shadow-lg rounded-lg p-4"
+            >
+              <Image
+                src={item.Image}
+                alt="Product Image"
+                width={200}
+                height={200}
+                className="rounded-lg object-cover h-44"
+              />
+              <div className="grid gap-4">
+                <div className="grid gap-2">
+                  <h3 className="font-semibold text-2xl font-josefin">
+                    {item.Name}
+                  </h3>
+                  <p className="text-muted-foreground text-justify line-clamp-4">
+                    {item.description}
+                  </p>
                 </div>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <Avatar>
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback>JL</AvatarFallback>
-                </Avatar>
-                <div className="text-center">
-                  <p className="text-sm font-medium leading-none">Jane Lim</p>
-                  <p className="text-sm text-muted-foreground">Lead Designer</p>
-                </div>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <Avatar>
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback>SM</AvatarFallback>
-                </Avatar>
-                <div className="text-center">
-                  <p className="text-sm font-medium leading-none">Sarah Mayer</p>
-                  <p className="text-sm text-muted-foreground">Production Manager</p>
-                </div>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <Avatar>
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback>TW</AvatarFallback>
-                </Avatar>
-                <div className="text-center">
-                  <p className="text-sm font-medium leading-none">Tom Wilson</p>
-                  <p className="text-sm text-muted-foreground">Finishing Specialist</p>
+                <div className="flex items-center gap-4">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => handleDecreaseQuantity(item.id)}
+                  >
+                    -
+                  </Button>
+                  <span className="text-lg font-medium">{item.quantity}</span>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => handleIncreaseQuantity(item.id)}
+                  >
+                    +
+                  </Button>
+                  <div className="ml-auto text-2xl font-bold">
+                    Rs.{item.Price * item.quantity}
+                  </div>
+                  <Image
+                    src="/img/delete.png"
+                    alt="Delete Icon"
+                    className="cursor-pointer object-cover"
+                    height={30}
+                    width={30}
+                    onClick={() => handleDelete(item.id)}
+                  />
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground">&copy; 2024 Acme Furniture. All rights reserved.</p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
-            Terms of Service
-          </Link>
-          <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
-            Privacy
-          </Link>
-        </nav>
-      </footer>
+          ))}
+        </div>
+      </div>
+      <div className="border-t pt-6 flex items-center justify-between shadow-lg rounded-lg p-4">
+        <h2 className="text-2xl font-bold">Total: Rs.{totalPrice}</h2>
+        <Link href="/Checkout">
+          <Button size="lg">Proceed to Checkout</Button>
+        </Link>
+      </div>
     </div>
-  )
+  );
+}
+
+function TrashIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3 6h18" />
+      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+    </svg>
+  );
 }

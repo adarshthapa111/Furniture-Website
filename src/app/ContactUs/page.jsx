@@ -8,14 +8,14 @@ import { Button } from "../components/ui/button";
 export default function ContactUs() {
   return (
     <div className="">
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-gray-800 via-gray-400 to-gray-200">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-gray-200 via-gray-200 to-transparent">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center text-primary-foreground">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl font-josefin">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl font-josefin text-gray-800">
                 Contact Us
               </h1>
-              <p className="max-w-[700px] md:text-xl">
+              <p className="max-w-[700px] md:text-xl text-gray-600">
                 Get in touch with our team for any questions or inquiries about
                 our furniture products and services.
               </p>

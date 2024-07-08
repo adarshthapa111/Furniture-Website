@@ -9,12 +9,12 @@ export default function AboutUs() {
     <div className="flex flex-col">
       <section className="w-full relative h-[80vh] overflow-hidden">
         {/* <img src="/placeholder.svg" alt="Living Room" fill className="object-cover object-center" /> */}
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-800 via-gray-400 to-gray-200 flex items-center justify-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-300 to-transparent flex items-center justify-center">
           <div className="text-center space-y-4 max-w-2xl px-4">
-            <h1 className="text-4xl sm:text-6xl font-bold text-white font-josefin">
+            <h1 className="text-4xl sm:text-6xl font-bold text-gray-800 font-josefin">
               Crafting Timeless Furniture
             </h1>
-            <p className="text-lg sm:text-xl text-white">
+            <p className="text-lg sm:text-lg text-gray-700">
               Discover our collection of beautifully designed furniture that
               elevates any space.
             </p>

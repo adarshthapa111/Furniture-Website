@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../components/ui/button";
 import Image from "next/image";
+import Swal from "sweetalert2";
 import { supabase } from "../Supabase/config";
 import { UserAuth } from "../context/AuthContext";
 import Link from "next/link";
-import Swal from "sweetalert2";
 
-export default function AddToCart() {
+export default function Component() {
   const [fetchError, setFetchError] = useState(null);
   const [furnitures, setFurnitures] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -130,84 +130,80 @@ export default function AddToCart() {
   };
 
   return (
-    <div className="container mx-auto py-8 px-4 md:px-6 max-w-6xl min-h-screen">
-      <h1 className="text-2xl font-bold mb-6 font-josefin">
-        Cart Items({furnitures.length})
-      </h1>
-      {fetchError && <p className="text-red-500">{fetchError}</p>}
-      <div className="grid gap-6">
-        {furnitures.map((item) => (
-          <div
-            key={item.id}
-            className="grid grid-cols-[100px_1fr_150px_100px] items-center gap-4 border-b pb-4"
-          >
-            <Image
-              src={item.Image}
-              alt="Product Image "
-              width={200}
-              height={150}
-              className="object-cover h-24 w-28 cursor-pointer shadow-md border p-1 rounded-sm"
-            />
-            <div>
-              <h3 className="font-semibold font-josefin font-xl xl:text-3xl">
-                {item.Name}
-              </h3>
-              <p className="text-muted-foreground text-sm line-clamp-2 ">
-                {item.description}
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 rounded-full"
-                onClick={() => handleDecreaseQuantity(item.id)}
-              >
-                <MinusIcon className="h-4 w-4" />
-              </Button>
-              <span className="px-2">{item.quantity}</span>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 rounded-full"
-                onClick={() => handleIncreaseQuantity(item.id)}
-              >
-                <PlusIcon className="h-4 w-4" />
-              </Button>
-            </div>
-            <div className="flex items-center justify-end space-x-2">
-              <div className="text-right font-semibold">
-                Rs.{item.Price * item.quantity}
-              </div>
-              {/* <div> */}
+    <div className="container mx-auto max-w-6xl px-4 md:px-6 grid gap-8 py-6">
+      <div className="grid gap-6 rounded-lg p-2">
+        <h1 className="text-3xl font-bold tracking-tight font-josefin">
+          Your Cart
+        </h1>
+        {fetchError && <p className="text-red-500">{fetchError}</p>}
+        <div className="grid gap-6">
+          {furnitures.map((item) => (
+            <div
+              key={item.id}
+              className="grid md:grid-cols-[200px_1fr_auto] gap-6 items-start shadow-lg border border-gray-300 rounded-lg p-4"
+            >
               <Image
-                src="/img/idelete.png"
-                alt="Delete Icon"
-                className="cursor-pointer"
-                height={30}
-                width={30}
-                // onClick={handleDelete(item.id)}
-                onClick={() => handleDelete(item.id)}
+                src={item.Image}
+                alt="Product Image"
+                width={200}
+                height={200}
+                className="rounded-lg object-cover md:h-44 w-full"
               />
-              {/* </div> */}
+              <div className="grid gap-4">
+                <div className="grid gap-2">
+                  <div className="flex justify-between">
+                    <h3 className="font-semibold text-2xl font-josefin">
+                      {item.Name}
+                    </h3>
+                    <Image
+                      src="/img/delete.png"
+                      alt="Delete Icon"
+                      className="cursor-pointer object-cover"
+                      height={30}
+                      width={30}
+                      onClick={() => handleDelete(item.id)}
+                    />
+                  </div>
+                  <p className="text-muted-foreground text-justify line-clamp-4">
+                    {item.description}
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => handleDecreaseQuantity(item.id)}
+                  >
+                    -
+                  </Button>
+                  <span className="text-lg font-medium">{item.quantity}</span>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => handleIncreaseQuantity(item.id)}
+                  >
+                    +
+                  </Button>
+                  <div className="ml-auto text-2xl font-bold">
+                    Rs.{item.Price * item.quantity}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-8 border-t pt-4">
-        <div className="flex justify-between items-center">
-          <p className="text-lg font-semibold md:text-3xl ">Total</p>
-          <p className="text-2xl font-bold">Rs.{totalPrice}</p>
+          ))}
         </div>
+      </div>
+      <div className="border-t pt-6 flex items-center justify-between shadow-lg rounded-lg p-4">
+        <h2 className="text-2xl font-bold">Total: Rs.{totalPrice}</h2>
         <Link href="/Checkout">
-        <Button className="w-full mt-4 p-6">Checkout</Button>
+          <Button size="lg">Proceed to Checkout</Button>
         </Link>
       </div>
     </div>
   );
 }
 
-function MinusIcon(props) {
+function TrashIcon(props) {
   return (
     <svg
       {...props}
@@ -221,47 +217,9 @@ function MinusIcon(props) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M5 12h14" />
-    </svg>
-  );
-}
-
-function PlusIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14" />
-      <path d="M12 5v14" />
-    </svg>
-  );
-}
-
-function XIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
+      <path d="M3 6h18" />
+      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
     </svg>
   );
 }
