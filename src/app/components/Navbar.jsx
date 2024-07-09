@@ -24,7 +24,7 @@ const Navbar = () => {
         <nav className="hidden lg:flex lg:items-center gap-4 sm:gap-6 lg;gap-8">
           <Link href="/">
             <ul className="text-sm font-medium">
-              <li className={pathname === "/" ? "bg-gradient-to-t from-gray-400 to-gray-200 p-1.5 rounded-lg text-sm" : "text-sm"}>Home</li>
+              <li className={pathname === "/" ? "bg-gradient-to-t from-slate-400 via-gray-400 to-slate-400 p-1.5 rounded-lg text-white text-sm" : "text-sm"}>Home</li>
             </ul>
           </Link>
           <Link href="/Shop">

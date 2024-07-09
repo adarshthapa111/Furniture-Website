@@ -1,19 +1,4 @@
-/* swiper-custom.css */
-
-/* Customize Swiper navigation buttons */
-.swiper-button-next,
-.swiper-button-prev {
-  background-color: whitesmoke; /* Example background color for navigation buttons */
-  color: black !important; /* Example color for navigation arrows */
-  border-radius: 5%; /* Optional: make the buttons round */
-  padding:60px 30px; /* Optional: adjust padding to make the buttons larger */
-}
-
-/* Adjust position and size if needed */
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  font-size: 20px; /* Example size for navigation arrows */
-}
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
 @tailwind base;
 @tailwind components;

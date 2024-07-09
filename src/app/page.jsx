@@ -33,8 +33,8 @@ export default function Home() {
   return (
     <>
       <div className="">
-        <section className="bg-gradient-to-b  from-gray-200 via-gray-200 to-transparent">
-          <Carousel className="max-w-6xl mx-auto rounded-t-xl">
+        <section className="mt-4 bg-gradient-to-b rounded-lg max-w-6xl mx-auto  from-slate-300 via-gray-200 to-transparent">
+          <Carousel className="rounded-t-xl">
             <CarouselContent>
               {carouselData.map((item, index) => (
                 <CarouselItem
