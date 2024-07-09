@@ -171,6 +171,7 @@ export default function Home() {
           </section>
           <section className="mt-10 py-4 max-w-6xl mx-auto">
             <div className="">
+
               <div>
                 <LatestProducts />
               </div>
