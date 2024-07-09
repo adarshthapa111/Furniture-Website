@@ -212,7 +212,9 @@ const Card = () => {
     }
 
     if (filters.price) {
-      query = query.gte("Price", filters.price.min).lte("Price", filters.price.max);
+      query = query
+        .gte("Price", filters.price.min)
+        .lte("Price", filters.price.max);
     }
 
     if (filters.material.length > 0) {
@@ -266,7 +268,7 @@ const Card = () => {
   return (
     <div className="w-full max-w-6xl mx-auto mt-6">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
-      <Filter selectedFilters={filters} onFilterChange={setFilters} />
+        <Filter selectedFilters={filters} onFilterChange={setFilters} />
         {currentItems.map((furniture) => (
           <Link
             key={furniture.id}

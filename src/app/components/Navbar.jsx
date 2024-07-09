@@ -21,27 +21,27 @@ const Navbar = () => {
             Hamro Furniture
           </span>
         </Link>
-        <nav className="hidden lg:flex gap-4 sm:gap-6">
+        <nav className="hidden lg:flex lg:items-center gap-4 sm:gap-6 lg;gap-8">
           <Link href="/">
             <ul className="text-sm font-medium">
-              <li className={pathname === "/" ? "font-bold" : ""}>Home</li>
+              <li className={pathname === "/" ? "bg-gradient-to-t from-gray-400 to-gray-200 p-1.5 rounded-lg text-sm" : "text-sm"}>Home</li>
             </ul>
           </Link>
           <Link href="/Shop">
             <ul className="text-sm font-medium">
-              <li className={pathname === "/Shop" ? "font-bold" : ""}>Shop</li>
+              <li className={pathname === "/Shop" ? "bg-gradient-to-t from-gray-400 to-gray-200 p-1.5 rounded-lg" : ""}>Shop</li>
             </ul>
           </Link>
           <Link href="/AboutUs">
             <ul className="text-sm font-medium">
-              <li className={pathname === "/AboutUs" ? "font-bold" : ""}>
+              <li className={pathname === "/AboutUs" ? "bg-gradient-to-t from-gray-400 to-gray-200 p-1.5 rounded-lg" : ""}>
                 About
               </li>
             </ul>
           </Link>
           <Link href="/ContactUs">
             <ul className="text-sm font-medium">
-              <li className={pathname === "/ContactUs" ? "font-bold" : ""}>
+              <li className={pathname === "/ContactUs" ? "font-medium bg-gradient-to-t from-gray-400 to-gray-200 p-1.5 rounded-lg" : ""}>
                 Contact
               </li>
             </ul>
