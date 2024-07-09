@@ -1,11 +1,61 @@
 "use client";
-
+import { useState } from "react";
+// import { supabase } from '../supabase'; // Import your Supabase client
+import { supabase } from "../Supabase/config";
+import Swal from "sweetalert2";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Button } from "../components/ui/button";
 
 export default function ContactUs() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Insert data into 'contacts' table in Supabase
+      const { data, error } = await supabase.from("ContactUs").insert([
+        {
+          Name: name,
+          Email: email,
+          Message: message
+        },
+      ]);
+
+      if (error) {
+        throw error;
+      }
+
+      // Clear form after successful submission
+      setName("");
+      setEmail("");
+      setMessage("");
+      // Show success message using SweetAlert
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Your message has been sent successfully.",
+        confirmButtonText: "OK",
+        timer: 2000, // Close alert after 2 seconds
+      });
+
+      // Optionally, show a success message or redirect to a thank you page
+    } catch (error) {
+      console.error("Error submitting form:", error.message);
+      // Handle error state or show error message
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "An error occurred while submitting your message. Please try again later.",
+        confirmButtonText: "OK",
+      });
+    }
+  };
+
   return (
     <div className="">
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-slate-300 via-gray-200 to-transparent">
@@ -34,10 +84,15 @@ export default function ContactUs() {
                 Fill out the form below and we'll get back to you as soon as
                 possible.
               </p>
-              <form className="mt-6 space-y-4">
+              <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="Enter your name" />
+                  <Input
+                    id="name"
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
                 </div>
                 <div>
                   <Label htmlFor="email">Email</Label>
@@ -45,6 +100,8 @@ export default function ContactUs() {
                     id="email"
                     type="email"
                     placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div>
@@ -53,6 +110,8 @@ export default function ContactUs() {
                     id="message"
                     placeholder="Enter your message"
                     className="min-h-[120px]"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                   />
                 </div>
                 <Button type="submit">Submit</Button>
