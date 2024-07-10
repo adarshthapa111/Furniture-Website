@@ -19,6 +19,7 @@ import Swal from "sweetalert2";
 import { supabase } from "../../Supabase/config";
 import Recommand from "../../components/Recommand";
 import RatingAndReview from "../../components/RatingAndReview";
+import Loader from "../../components/Loader";
 
 export default function FurnitureDetail() {
   const { id } = useParams(); // Access the dynamic route parameter
@@ -181,7 +182,9 @@ export default function FurnitureDetail() {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return <Loader />;
+  }
   if (error) return <p>{error}</p>;
 
   return (

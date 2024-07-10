@@ -237,21 +237,24 @@ import {
   CardContent,
   CardDescription,
   CardFooter,
-} from "../components/ui/card";
-import { Label } from "../components/ui/label";
-import { Input } from "../components/ui/input";
+} from "../../components/ui/card";
+import { Label } from "../../components/ui/label";
+import { Input } from "../../components/ui/input";
+
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../components/ui/select";
-import { Textarea } from "../components/ui/textarea";
-import { Button } from "../components/ui/button";
+} from "../../components/ui/select";
+import { Textarea } from "../../components/ui/textarea";
+import { Button } from "../../components/ui/button";
 import { useState } from "react";
-import { supabase } from "../Supabase/config";
+import { supabase } from "../../Supabase/config";
 import Swal from "sweetalert2";
+import Navbar from "../AdminComponent/Navbar";
+import Link from "next/link";
 
 const AddFurniture = () => {
   const [name, setName] = useState("");
@@ -332,8 +335,9 @@ const AddFurniture = () => {
   };
 
   return (
-    <div>
-      <section className="mt-12">
+    <div className="flex">
+      <Navbar/>
+      <section className="mt-12 pl-32">
         <Card className="w-full max-w-2xl mx-auto">
           <CardHeader>
             <CardTitle className="font-josefin text-xl md:text-3xl xl:text-4xl text-center">

@@ -9,7 +9,7 @@ const Categories = () => {
     //     const fetchData = () =>{
     //         const {data, error} = await supabase.from()
     //     }
-    // })
+
   return (
     <div>
       <section className="py-12 md:py-4 max-w-6xl mx-auto">

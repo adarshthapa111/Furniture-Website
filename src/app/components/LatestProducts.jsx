@@ -1,14 +1,16 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { Button } from "../components/ui/button";
 import { supabase } from "../Supabase/config"; // Assuming you have supabase initialized here
-
+import Link from "next/link";
+import Image from "next/image";
 export default function Component() {
   const [latestProducts, setLatestProducts] = useState([]);
   const [fetchError, setFetchError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const itemsPerPage = 4; // Number of items per page
+  const itemsPerPage = 3; // Number of items per page
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,37 +73,40 @@ export default function Component() {
           </Button>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        {latestProducts.map((product) => (
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        {latestProducts.map((furniture) => (
           <div
-            key={product.id}
-            className="bg-background border border-gray-300 rounded-lg overflow-hidden shadow-lg"
+            key={furniture.id}
+            className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out border border-gray-200"
           >
-            <img
-              src={product.Image} // Use the actual image source from your data
-              alt={product.Name}
-              width={400}
-              height={300}
-              className="w-full h-[220px] object-cover border-b-2"
+            <Link
+              href={`/furniture/${furniture.id}`}
+              className="absolute inset-0 z-10"
+              prefetch={false}
+            >
+              <span className="sr-only">View Product</span>
+            </Link>
+            <Image
+              src={furniture.Image || "/placeholder.svg"}
+              alt={furniture.Name}
+              width={500}
+              height={600}
+              className="aspect-square h-64 w-full object-cover group-hover:opacity-50 transition-opacity"
             />
             <div className="p-4">
-              <h3 className="text-lg font-semibold mb-2 font-josefin">
-                {product.Name}
-              </h3>
-              <h4 className="text-sm line-clamp-2 mb-2 text-justify font-light">
-                {product.Description}
-              </h4>
-              <div className="text-primary font-semibold mb-4">
-                Rs.{product.Price}
+              <h3 className="font-semibold text-lg">{furniture.Name}</h3>
+              <p className="text-muted-foreground line-clamp-2 text-justify">
+                {furniture.Description}
+              </p>
+              <div className="mt-4 flex items-center justify-between">
+                <span className="font-semibold">Rs.{furniture.Price}</span>
+                <Button size="sm">Add to Cart</Button>
               </div>
-              <Button size="sm" className="w-full">
-                Add to cart
-              </Button>
             </div>
           </div>
         ))}
       </div>
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-8 space-x-2">
         {Array.from({ length: totalPages }, (_, index) => (
           <Button
             key={index}
