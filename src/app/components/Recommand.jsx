@@ -10,6 +10,9 @@ const Recommand = ({ currentItemId }) => {
   const [recFurnitures, setRecFurnitures] = useState([]);
   const [fetchError, setFetchError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const itemsPerPage = 3; // Number of items per page
 
   useEffect(() => {
     console.log("Received currentItemId:", currentItemId);
@@ -33,8 +36,7 @@ const Recommand = ({ currentItemId }) => {
       if (data) {
         console.log("Fetched data:", data);
 
-        // Assign dummy keywords for testing purposes
-        data.forEach(item => {
+        data.forEach((item) => {
           item.keywords = item.keywords || "default keywords";
         });
 
@@ -52,6 +54,7 @@ const Recommand = ({ currentItemId }) => {
           console.log("Recommendations:", recommendations);
           setRecFurnitures(recommendations);
           setFetchError(null);
+          setTotalPages(Math.ceil(recommendations.length / itemsPerPage));
         }
         setLoading(false);
       }
@@ -60,7 +63,9 @@ const Recommand = ({ currentItemId }) => {
   }, [currentItemId]);
 
   const getRecommendations = (currentItem, allItems) => {
-    const currentKeywords = currentItem.keywords ? currentItem.keywords.split(" ") : [];
+    const currentKeywords = currentItem.keywords
+      ? currentItem.keywords.split(" ")
+      : [];
     console.log("Current item keywords:", currentKeywords);
 
     const scores = allItems.map((item) => {
@@ -80,17 +85,51 @@ const Recommand = ({ currentItemId }) => {
     return scores.filter((score) => score.score > 0).map((score) => score.item);
   };
 
+  const handlePrevious = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
+  const paginatedRecFurnitures = recFurnitures.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div>
       <section className="max-w-6xl px-4 mx-auto py-12 lg:py-20">
-        <h2 className="text-2xl sm:text-4xl font-bold mb-8 font-josefin">
-          You May Also Like
-        </h2>
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-2xl sm:text-4xl font-bold font-josefin">
+              You May Also Like
+            </h2>
+          </div>
+          <div className="flex space-x-4">
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={handlePrevious}
+              disabled={currentPage === 1}
+            >
+              <ChevronLeftIcon className="w-5 h-5" />
+            </Button>
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={handleNext}
+              disabled={currentPage === totalPages}
+            >
+              <ChevronRightIcon className="w-5 h-5" />
+            </Button>
+          </div>
+        </div>
         {loading && <p>Loading recommendations...</p>}
         {fetchError && <p className="text-red-500">{fetchError}</p>}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {recFurnitures.map((furniture) => (
+          {paginatedRecFurnitures.map((furniture) => (
             <div
               key={furniture.id}
               className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out border border-gray-200"
@@ -111,7 +150,9 @@ const Recommand = ({ currentItemId }) => {
               />
               <div className="p-4">
                 <h3 className="font-semibold text-lg">{furniture.Name}</h3>
-                <p className="text-muted-foreground line-clamp-2 text-justify">{furniture.Description}</p>
+                <p className="text-muted-foreground line-clamp-2 text-justify">
+                  {furniture.Description}
+                </p>
                 <div className="mt-4 flex items-center justify-between">
                   <span className="font-semibold">Rs.{furniture.Price}</span>
                   <Button size="sm">Add to Cart</Button>
@@ -120,9 +161,58 @@ const Recommand = ({ currentItemId }) => {
             </div>
           ))}
         </div>
+        <div className="flex justify-center mt-8">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <Button
+              key={index}
+              variant={index + 1 === currentPage ? "primary" : "outline"}
+              onClick={() => setCurrentPage(index + 1)}
+            >
+              {index + 1}
+            </Button>
+          ))}
+        </div>
       </section>
     </div>
   );
 };
+
+function ChevronLeftIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m15 18-6-6 6-6" />
+    </svg>
+  );
+}
+
+function ChevronRightIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m9 18 6-6-6-6" />
+    </svg>
+  );
+}
 
 export default Recommand;

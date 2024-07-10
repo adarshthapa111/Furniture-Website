@@ -17,6 +17,8 @@ import { useEffect, useState } from "react";
 import { UserAuth } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 import { supabase } from "../../Supabase/config";
+import Recommand from "../../components/Recommand";
+import RatingAndReview from "../../components/RatingAndReview";
 
 export default function FurnitureDetail() {
   const { id } = useParams(); // Access the dynamic route parameter
@@ -289,7 +291,44 @@ export default function FurnitureDetail() {
             </div>
           </div>
         </section>
+        <section className="bg-muted py-12 lg:py-20">
+          <div className="max-w-6xl px-4 mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 font-josefin">
+              More Details
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+              <div>
+                <img
+                  src={furnitureData.Image1}
+                  alt="Product Detail"
+                  width={600}
+                  height={400}
+                  className="aspect-[3/2] object-cover rounded-lg shadow-md border border-gray-300 cursor-pointer"
+                />
+                <p className="mt-4 text-muted-foreground">
+                  Crafted with premium materials, this sofa features a solid oak
+                  frame and durable polyester upholstery.
+                </p>
+              </div>
+              <div>
+                <img
+                  src={furnitureData.Image2}
+                  alt="Product Detail"
+                  width={600}
+                  height={400}
+                  className="aspect-[3/2] object-cover rounded-lg shadow-md border border-gray-300 cursor-pointer"
+                />
+                <p className="mt-4 text-muted-foreground">
+                  The clean, minimalist design of this sofa allows it to
+                  seamlessly blend into a variety of interior styles.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        {id && <Recommand currentItemId={id} />}
       </main>
+      {id && <RatingAndReview furnitureId={id} />}
     </div>
   );
 }
