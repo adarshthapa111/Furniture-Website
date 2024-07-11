@@ -303,7 +303,7 @@ export default function FurnitureDetail() {
             </h2>
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
               <div>
-                <img
+                <Image
                   src={furnitureData.Image1}
                   alt="Product Detail"
                   width={600}
@@ -316,7 +316,7 @@ export default function FurnitureDetail() {
                 </p>
               </div>
               <div>
-                <img
+                <Image
                   src={furnitureData.Image2}
                   alt="Product Detail"
                   width={600}

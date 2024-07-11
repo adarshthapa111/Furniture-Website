@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "../components/ui/button";
 import Image from "next/image";
+
 export default function Component() {
   return (
     <div className="text-foreground">
@@ -11,7 +12,7 @@ export default function Component() {
               <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                 <span className="sr-only">View Product</span>
               </Link>
-              <img
+              <Image
                 src="/img/whiteChiar.webp"
                 alt="Product 1"
                 width={500}
@@ -86,7 +87,7 @@ export default function Component() {
             <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
               <span className="sr-only">View Product</span>
             </Link>
-            <img
+            <Image
               src="/img/whiteChiar.webp"
               alt="Latest Product"
               width={800}

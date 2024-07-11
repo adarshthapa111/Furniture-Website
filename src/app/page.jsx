@@ -55,7 +55,7 @@ export default function Home() {
                     </div>
                   )}
                   <div className="flex-1 relative">
-                    <img
+                    <Image
                       src={item.src}
                       alt={item.alt}
                       className={item.imageClass}

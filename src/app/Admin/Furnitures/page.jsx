@@ -17,6 +17,7 @@ import {
 } from "../../components/ui/popover";
 import Navbar from "../../Admin/AdminComponent/Navbar";
 import { supabase } from "../../Supabase/config";
+import Image from "next/image";
 
 export default function Home() {
   const [furnitures, setFurnitures] = useState([]);
@@ -43,7 +44,9 @@ export default function Home() {
       <Navbar />
       <main className="flex-grow ">
         <div className="flex justify-between items-center mb-4 bg-slate-50 p-4 border-b border-gray-300">
-          <h1 className="text-2xl font-semibold font-josefin">All Furnitures</h1>
+          <h1 className="text-2xl font-semibold font-josefin">
+            All Furnitures
+          </h1>
           <Button
             type="button"
             className="px-2 py-1 bg-gray-800 text-white rounded-lg flex items-center space-x-2 text-sm"
@@ -76,14 +79,18 @@ export default function Home() {
                     {furniture.Description}
                   </TableCell>
                   <TableCell>
-                    <img
+                    <Image
+                      height={200}
+                      width={200}
                       src={furniture.Image}
                       alt={furniture.Name}
                       className="w-40 h-34 object-cover border-2 border-gray-400"
                     />
                   </TableCell>
 
-                  <TableCell className="capitalize">{furniture.Category}</TableCell>
+                  <TableCell className="capitalize">
+                    {furniture.Category}
+                  </TableCell>
                   <TableCell className="text-right">
                     Rs.{furniture.Price}
                   </TableCell>

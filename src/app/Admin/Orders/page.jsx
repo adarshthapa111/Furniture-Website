@@ -18,6 +18,7 @@ import {
   TableCell,
 } from "@/app/components/ui/table";
 import Navbar from "../AdminComponent/Navbar";
+import Image from "next/image";
 
 export default function Component() {
   return (
@@ -51,10 +52,10 @@ export default function Component() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="rounded-full">
-                    <img
+                    <Image
+                      height={200}
+                      width={200}
                       src="/placeholder.svg"
-                      width="32"
-                      height="32"
                       className="rounded-full"
                       alt="Avatar"
                     />
@@ -95,175 +96,6 @@ export default function Component() {
                       February 20, 2022
                     </TableCell>
                     <TableCell className="text-right">$42.25</TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      Shipped
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoveHorizontalIcon className="w-4 h-4" />
-                            <span className="sr-only">Actions</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>View order</DropdownMenuItem>
-                          <DropdownMenuItem>Customer details</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">#3209</TableCell>
-                    <TableCell>Ava Johnson</TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      January 5, 2022
-                    </TableCell>
-                    <TableCell className="text-right">$74.99</TableCell>
-                    <TableCell className="hidden sm:table-cell">Paid</TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoveHorizontalIcon className="w-4 h-4" />
-                            <span className="sr-only">Actions</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>View order</DropdownMenuItem>
-                          <DropdownMenuItem>Customer details</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">#3204</TableCell>
-                    <TableCell>Michael Johnson</TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      August 3, 2021
-                    </TableCell>
-                    <TableCell className="text-right">$64.75</TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      Unfulfilled
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoveHorizontalIcon className="w-4 h-4" />
-                            <span className="sr-only">Actions</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>View order</DropdownMenuItem>
-                          <DropdownMenuItem>Customer details</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">#3203</TableCell>
-                    <TableCell>Lisa Anderson</TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      July 15, 2021
-                    </TableCell>
-                    <TableCell className="text-right">$34.50</TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      Shipped
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoveHorizontalIcon className="w-4 h-4" />
-                            <span className="sr-only">Actions</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>View order</DropdownMenuItem>
-                          <DropdownMenuItem>Customer details</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">#3202</TableCell>
-                    <TableCell>Samantha Green</TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      June 5, 2021
-                    </TableCell>
-                    <TableCell className="text-right">$89.99</TableCell>
-                    <TableCell className="hidden sm:table-cell">Paid</TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoveHorizontalIcon className="w-4 h-4" />
-                            <span className="sr-only">Actions</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>View order</DropdownMenuItem>
-                          <DropdownMenuItem>Customer details</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">#3201</TableCell>
-                    <TableCell>Adam Barlow</TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      May 20, 2021
-                    </TableCell>
-                    <TableCell className="text-right">$24.99</TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      Unfulfilled
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoveHorizontalIcon className="w-4 h-4" />
-                            <span className="sr-only">Actions</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>View order</DropdownMenuItem>
-                          <DropdownMenuItem>Customer details</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">#3207</TableCell>
-                    <TableCell>Sophia Anderson</TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      November 2, 2021
-                    </TableCell>
-                    <TableCell className="text-right">$99.99</TableCell>
-                    <TableCell className="hidden sm:table-cell">Paid</TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoveHorizontalIcon className="w-4 h-4" />
-                            <span className="sr-only">Actions</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>View order</DropdownMenuItem>
-                          <DropdownMenuItem>Customer details</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">#3206</TableCell>
-                    <TableCell>Daniel Smith</TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      October 7, 2021
-                    </TableCell>
-                    <TableCell className="text-right">$67.50</TableCell>
                     <TableCell className="hidden sm:table-cell">
                       Shipped
                     </TableCell>
