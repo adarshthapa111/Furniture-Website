@@ -8,80 +8,113 @@ import { UserAuth } from "../context/AuthContext";
 import { usePathname } from "next/navigation";
 import Searchbar from "../components/Seachbar";
 import ProfileDropdown from "../components/ProfileDropdown";
-
+import { disableNavAndFoot } from "./DisableNavAndFoot";
 const Navbar = () => {
   const { user } = UserAuth();
   const pathname = usePathname();
+  const path = usePathname();
   return (
-    <div className="shadow-sm border-b border-gray-200">
-      <header className="px-4 lg:px-6 h-14 flex items-center rounded-full justify-between max-w-6xl mx-auto">
-        <Link href="#" className="flex items-center gap-2">
-          <SofaIcon className="h-6 w-6" />
-          <span className="text-lg font-bold font-josefin">
-            Hamro Furniture
-          </span>
-        </Link>
-        <nav className="hidden lg:flex lg:items-center gap-4 sm:gap-6 lg;gap-8">
-          <Link href="/">
-            <ul className="text-sm font-medium">
-              <li className={pathname === "/" ? "bg-gradient-to-t from-slate-400 via-gray-400 to-slate-400 p-1.5 rounded-lg text-white text-sm" : "text-sm"}>Home</li>
-            </ul>
-          </Link>
-          <Link href="/Shop">
-            <ul className="text-sm font-medium">
-              <li className={pathname === "/Shop" ? "bg-gradient-to-t from-gray-400 to-gray-200 p-1.5 rounded-lg" : ""}>Shop</li>
-            </ul>
-          </Link>
-          <Link href="/AboutUs">
-            <ul className="text-sm font-medium">
-              <li className={pathname === "/AboutUs" ? "bg-gradient-to-t from-gray-400 to-gray-200 p-1.5 rounded-lg" : ""}>
-                About
-              </li>
-            </ul>
-          </Link>
-          <Link href="/ContactUs">
-            <ul className="text-sm font-medium">
-              <li className={pathname === "/ContactUs" ? "font-medium bg-gradient-to-t from-gray-400 to-gray-200 p-1.5 rounded-lg" : ""}>
-                Contact
-              </li>
-            </ul>
-          </Link>
-        </nav>
-        <div>
-          <Searchbar />
-        </div>
-        <div className="hidden lg:flex space-x-4">
-          <Link href="Favourites">
-            <Image
-              src="/img/fav-item.png"
-              className="h-7 w-7 drop-shadow-2xl shadow-gray-800 "
-              height={40}
-              width={25}
-            />
-          </Link>
-          <Link href="AddToCart">
-            <Image
-              src="/img/cartitems.png"
-              className="h-7 w-7 "
-              height={40}
-              width={25}
-            />
-          </Link>
-          {!user ? (
-            <Link href="/Login">
-              <Button varient="outline">Login</Button>
+    <>
+      {!disableNavAndFoot.includes(path) && (
+        <div className="shadow-sm border-b border-gray-200">
+          <header className="px-4 lg:px-6 h-14 flex items-center rounded-full justify-between max-w-6xl mx-auto">
+            <Link href="#" className="flex items-center gap-2">
+              <SofaIcon className="h-6 w-6" />
+              <span className="text-lg font-bold font-josefin">
+                Hamro Furniture
+              </span>
             </Link>
-          ) : (
-            <ProfileDropdown/>
-          )}
-        </div>
+            <nav className="hidden lg:flex lg:items-center gap-4 sm:gap-6 lg;gap-8">
+              <Link href="/">
+                <ul className="text-sm font-medium">
+                  <li
+                    className={
+                      pathname === "/"
+                        ? "bg-gradient-to-t from-slate-400 via-gray-400 to-slate-400 p-1.5 rounded-lg text-white text-sm"
+                        : "text-sm"
+                    }
+                  >
+                    Home
+                  </li>
+                </ul>
+              </Link>
+              <Link href="/Shop">
+                <ul className="text-sm font-medium">
+                  <li
+                    className={
+                      pathname === "/Shop"
+                        ? "bg-gradient-to-t from-gray-400 to-gray-200 p-1.5 rounded-lg"
+                        : ""
+                    }
+                  >
+                    Shop
+                  </li>
+                </ul>
+              </Link>
+              <Link href="/AboutUs">
+                <ul className="text-sm font-medium">
+                  <li
+                    className={
+                      pathname === "/AboutUs"
+                        ? "bg-gradient-to-t from-gray-400 to-gray-200 p-1.5 rounded-lg"
+                        : ""
+                    }
+                  >
+                    About
+                  </li>
+                </ul>
+              </Link>
+              <Link href="/ContactUs">
+                <ul className="text-sm font-medium">
+                  <li
+                    className={
+                      pathname === "/ContactUs"
+                        ? "font-medium bg-gradient-to-t from-gray-400 to-gray-200 p-1.5 rounded-lg"
+                        : ""
+                    }
+                  >
+                    Contact
+                  </li>
+                </ul>
+              </Link>
+            </nav>
+            <div>
+              <Searchbar />
+            </div>
+            <div className="hidden lg:flex space-x-4">
+              <Link href="Favourites">
+                <Image
+                  src="/img/fav-item.png"
+                  className="h-7 w-7 drop-shadow-2xl shadow-gray-800 "
+                  height={40}
+                  width={25}
+                />
+              </Link>
+              <Link href="AddToCart">
+                <Image
+                  src="/img/cartitems.png"
+                  className="h-7 w-7 "
+                  height={40}
+                  width={25}
+                />
+              </Link>
+              {!user ? (
+                <Link href="/Login">
+                  <Button varient="outline">Login</Button>
+                </Link>
+              ) : (
+                <ProfileDropdown />
+              )}
+            </div>
 
-        <Button variant="default" size="icon" className="lg:hidden">
-          <MenuIcon className="h-6 w-6" />
-          <span className="sr-only">Toggle navigation</span>
-        </Button>
-      </header>
-    </div>
+            <Button variant="default" size="icon" className="lg:hidden">
+              <MenuIcon className="h-6 w-6" />
+              <span className="sr-only">Toggle navigation</span>
+            </Button>
+          </header>
+        </div>
+      )}
+    </>
   );
 };
 function SofaIcon(props) {
