@@ -3,5 +3,6 @@ export const disableNavAndFoot = [
     "/Signup",
     "/Admin",
     "/Admin/AddFurniture",
-    "/Admin/Furnitures"
+    "/Admin/Furnitures",
+    "/Admin/Orders"
   ]

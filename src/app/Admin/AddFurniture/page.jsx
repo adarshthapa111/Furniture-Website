@@ -337,18 +337,14 @@ const AddFurniture = () => {
   return (
     <div className="flex">
       <Navbar/>
-      <section className="mt-12 pl-32">
-        <Card className="w-full max-w-2xl mx-auto">
-          <CardHeader>
-            <CardTitle className="font-josefin text-xl md:text-3xl xl:text-4xl text-center">
-              Add New Furniture
-            </CardTitle>
-            <CardDescription className="text-center">
-              Fill out the form to add a new furniture item.
-            </CardDescription>
-          </CardHeader>
+      <section className="w-full">
+        <div className="bg-slate-50 w-full border-b border-gray-300 p-2">
+          <h1 className="text-center font-josefin font-medium text-2xl">Add  New Furniture</h1>
+          <p className="text-md text-center p-1">  Fill out the form to add a new furniture item.</p>
+        </div>
+        <Card className="w-full max-w-2xl mx-auto mt-4 p-4">
           <CardContent>
-            <form className="grid gap-6" onSubmit={handleSubmit}>
+            <form className="grid gap-4" onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="name">Name</Label>

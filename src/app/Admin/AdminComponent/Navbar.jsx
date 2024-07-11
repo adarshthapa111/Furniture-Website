@@ -1,41 +1,69 @@
+"use client";
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
+
   return (
     <div className="">
-      <aside className="sticky top-0 h-screen w-56 bg-gray-100 text-gray-800 p-4">
+      <aside className="sticky top-0 h-screen w-56 bg-slate-50 text-gray-800 py-4 p-4">
         <div className="flex items-center mb-4 space-x-1">
-          <Link href="#" className="flex items-center gap-2">
+          <Link href="#" className="flex items-center gap-3">
             <SofaIcon className="h-6 w-6" />
             <span className="text-lg font-bold font-josefin">
               Hamro Furniture
             </span>
           </Link>
         </div>
-        <nav className="space-y-2">
+        <nav className="gap-y-4">
           <Link href="/Admin">
-            <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
+            <button
+              className={
+                pathname === "/Admin"
+                  ? "w-full flex items-center space-x-2 bg-gray-800 py-2 px-2 rounded-lg text-gray-50"
+                  : "w-full flex items-center space-x-2 hover:bg-gray-200 py-2 px-2 rounded-lg text-gray-500"
+              }
+            >
               <HomeIcon className="w-4 h-4" />
               <span className="text-sm font-medium">Home</span>
             </button>
           </Link>
-          <Link href="/Admin/Furniture">
-            <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
+          <Link href="/Admin/Furnitures">
+            <button
+              className={
+                pathname === "/Admin/Furnitures"
+                  ? "w-full flex items-center space-x-2 bg-gray-800 py-2 px-2 rounded-lg text-gray-50"
+                  : "w-full flex items-center space-x-2 hover:bg-gray-200 py-2 px-2 rounded-lg text-gray-500"
+              }
+            >
               <UsersIcon className="w-4 h-4" />
               <span className="text-sm font-medium">All Furnitures</span>
             </button>
           </Link>
           <Link href="/Admin/AddFurniture">
-            <button className="w-full flex items-center space-x-2 bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-800">
+            <button
+              className={
+                pathname === "/Admin/AddFurniture"
+                  ? "w-full flex items-center space-x-2 bg-gray-800  py-2 px-2 rounded-lg text-gray-50"
+                  : "w-full flex items-center space-x-2 hover:bg-gray-200 py-2 px-2 rounded-lg text-gray-500"
+              }
+            >
               <WalletIcon className="w-4 h-4" />
               <span className="text-sm font-medium">Add Furniture</span>
             </button>
           </Link>
-          <Link href="/Admin">
-            <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
+          <Link href="/Admin/Orders">
+            <button
+              className={
+                pathname === "/Admin/Orders"
+                  ? "w-full flex items-center space-x-2 bg-gray-800 py-2 px-2 rounded-lg text-gray-50"
+                  : "w-full flex items-center space-x-2 hover:bg-gray-200 py-2 px-2 rounded-lg text-gray-500"
+              }
+            >
               <TicketIcon className="w-4 h-4" />
-              <span className="text-sm font-medium">Tax</span>
+              <span className="text-sm font-medium">Orders</span>
             </button>
           </Link>
           <Link href="/Logout">
