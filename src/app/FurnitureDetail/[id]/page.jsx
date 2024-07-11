@@ -192,14 +192,35 @@ export default function FurnitureDetail() {
       <main className="flex-1">
         <section className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-12 lg:py-20">
           <div className="grid gap-6">
-            <Image
-              src={furnitureData.Image}
-              alt="Product Image"
-              width={600}
-              height={600}
-              className="aspect-square object-contain rounded-lg border border-gray-300 shadow-md"
-            />
+            <div className="relative">
+              <Image
+                src={furnitureData.Image}
+                alt="Product Image"
+                width={540}
+                height={500}
+                className="object-cover rounded-lg border h-96 border-gray-300 shadow-md"
+                zoomType="hover"
+                zoomScale={1.2}
+              />
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Image
+                src={furnitureData?.Image1 || "/img/vector2.png"}
+                alt="Product Image"
+                width={300}
+                height={300}
+                className="aspect-square object-cover rounded-lg border"
+              />
+              <Image
+                src={furnitureData?.Image2 || "/img/vector6.png"}
+                alt="Product Image"
+                width={300}
+                height={300}
+                className="aspect-square object-cover rounded-lg border"
+              />
+            </div>
           </div>
+
           <div className="grid gap-6">
             <div>
               <h1 className="text-3xl sm:text-4xl font-bold font-josefin">
@@ -220,7 +241,6 @@ export default function FurnitureDetail() {
                     {furnitureData.Length}&quot; D x {furnitureData.Height}
                     &quot; H
                   </li>
-
                   <li>
                     <strong>Materials:</strong> {furnitureData.Material}
                   </li>
@@ -303,12 +323,12 @@ export default function FurnitureDetail() {
             </h2>
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
               <div>
-                <Image
-                  src={furnitureData.Image1}
+                <img
+                  src={furnitureData?.Image1 || "/img/vector2.png"}
                   alt="Product Detail"
                   width={600}
                   height={400}
-                  className="aspect-[3/2] object-cover rounded-lg shadow-md border border-gray-300 cursor-pointer"
+                  className="aspect-[3/2] object-contain rounded-lg shadow-md border border-gray-300 cursor-pointer"
                 />
                 <p className="mt-4 text-muted-foreground">
                   Crafted with premium materials, this sofa features a solid oak
@@ -316,8 +336,8 @@ export default function FurnitureDetail() {
                 </p>
               </div>
               <div>
-                <Image
-                  src={furnitureData.Image2}
+                <img
+                  src={furnitureData?.Image2 || "/img/vector6.png"}
                   alt="Product Detail"
                   width={600}
                   height={400}

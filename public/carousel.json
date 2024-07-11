@@ -6,7 +6,7 @@
       "text": "Grab your chair 40% this Friday!",
       "textClass": "text-gray-600 font-bold font-josefin text-xl md:text-6xl xl:text-6xl leading-loose tracking-wide",
       "containerClass": "flex justify-center items-center",
-      "imageClass": "h-96 w-96 object-contain",
+      "imageClass": "h-80 w-96 object-contain",
       "title": "Room Item"
     },
     {
@@ -25,7 +25,7 @@
       "discount": "Chair with 30% discount",
       "text": "Grab your chair 40% this Friday!",
       "textClass": "w-1/2 text-gray-600 font-bold font-josefin text-xl md:text-4xl xl:text-6xl leading-loose tracking-wide",
-      "imageClass": "h-96 w-96 object-cover",
+      "imageClass": "h-80 w-96 object-cover",
       "title": "Room Item"
     },
     {
@@ -35,7 +35,7 @@
       "text": "Grab your chair with us 40% this Friday!",
       "textClass": "w-1/2 text-gray-600 font-bold font-josefin text-xl md:text-4xl xl:text-6xl leading-loose tracking-wide",
       "containerClass": "",
-      "imageClass": "h-96 w-96 object-cover",
+      "imageClass": "h-80 w-96 object-cover",
       "title": "Room Item"
     },
     {
@@ -45,7 +45,7 @@
       "text": "Grab your chair with us 40% this Friday!",
       "textClass": "w-1/2 text-gray-600 font-bold font-josefin text-xl md:text-4xl xl:text-6xl leading-loose tracking-wide",
       "containerClass": "",
-      "imageClass": "h-96 w-96 object-cover",
+      "imageClass": "h-80 w-96 object-cover",
       "title": "Room Item"
     },
     {
@@ -55,7 +55,7 @@
       "text": "Grab your chair with us 40% this Friday!",
       "textClass": "w-1/2 text-gray-600 font-bold font-josefin text-xl md:text-4xl xl:text-5xl leading-loose tracking-wide",
       "containerClass": "",
-      "imageClass": "h-96 w-96 object-cover",
+      "imageClass": "h-80 w-96 object-cover",
       "title": "Room Item"
     }
   ]

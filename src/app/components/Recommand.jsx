@@ -135,7 +135,7 @@ const Recommand = ({ currentItemId }) => {
               className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out border border-gray-200"
             >
               <Link
-                href={`/furniture/${furniture.id}`}
+                href={`/FurnitureDetail/${furniture.id}`}
                 className="absolute inset-0 z-10"
                 prefetch={false}
               >
@@ -161,7 +161,7 @@ const Recommand = ({ currentItemId }) => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-8 space-x-2">
           {Array.from({ length: totalPages }, (_, index) => (
             <Button
               key={index}
