@@ -59,9 +59,8 @@ export default function Home() {
                       src={item.src}
                       alt={item.alt}
                       className={item.imageClass}
-                      layout="fill"
-                      objectFit="cover"
-                      height={1200}
+                      // className="object-contain"
+                      height={600}
                       width={600}
                       // className="rounded-r-xl"
                     />
