@@ -61,7 +61,7 @@ export default function Searchbar() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full max-w-md mx-auto relative">
+    <div className="hidden lg:flex flex-col items-center gap-4 w-full max-w-md mx-auto relative">
       <div className="searchbar w-full">
         <Input
           type="search"

@@ -80,7 +80,7 @@ export default function Component() {
             className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out border border-gray-200"
           >
             <Link
-              href={`/furniture/${furniture.id}`}
+              href={`/FurnitureDetail/${furniture.id}`}
               className="absolute inset-0 z-10"
               prefetch={false}
             >

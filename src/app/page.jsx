@@ -39,7 +39,7 @@ export default function Home() {
               {carouselData.map((item, index) => (
                 <CarouselItem
                   key={index}
-                  className="flex justify-between items-center"
+                  className="md:flex justify-between items-center"
                 >
                   {item.text && (
                     <div className="flex-1 p-10">

@@ -58,7 +58,7 @@ export default function ContactUs() {
 
   return (
     <div className="">
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-slate-300 via-gray-200 to-transparent">
+      <section className="w-full p-2 py-12 md:py-24 lg:py-32 bg-gradient-to-b from-slate-300 via-gray-200 to-transparent">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center text-primary-foreground">
             <div className="space-y-2">
