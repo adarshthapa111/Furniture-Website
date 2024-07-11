@@ -81,7 +81,7 @@ export default function ContactUs() {
                 Contact Us
               </h2>
               <p className="text-muted-foreground mt-2">
-                Fill out the form below and we'll get back to you as soon as
+                Fill out the form below and we&apos;ll get back to you as soon as
                 possible.
               </p>
               <form className="mt-6 space-y-4" onSubmit={handleSubmit}>

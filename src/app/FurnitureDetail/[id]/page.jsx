@@ -216,9 +216,11 @@ export default function FurnitureDetail() {
                 </h2>
                 <ul className="space-y-2 text-muted-foreground">
                   <li>
-                    <strong>Dimensions:</strong> {furnitureData.Width}" W x{" "}
-                    {furnitureData.Length}" D x {furnitureData.Height}" H
+                    <strong>Dimensions:</strong> {furnitureData.Width}&quot; W x{" "}
+                    {furnitureData.Length}&quot; D x {furnitureData.Height}
+                    &quot; H
                   </li>
+
                   <li>
                     <strong>Materials:</strong> {furnitureData.Material}
                   </li>
