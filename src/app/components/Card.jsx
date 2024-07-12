@@ -13,6 +13,7 @@ const Card = () => {
   const [furnitureError, setFurnituresError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [ratingsData, setRatingsData] = useState({});
   const [filters, setFilters] = useState({
     category: [],
     price: { min: 0, max: 100000 },
@@ -51,8 +52,40 @@ const Card = () => {
   };
 
   useEffect(() => {
+    const fetchRatings = async () => {
+      try {
+        const { data: ratingsData, error: ratingsError } = await supabase
+          .from("RatingAndReview")
+          .select("*");
+
+        if (ratingsError) {
+          console.error("Couldn't fetch the ratings data!");
+          return;
+        }
+
+        const ratingsMap = ratingsData.reduce((acc, rating) => {
+          const id = rating.FurnitureId;
+          if (!acc[id]) {
+            acc[id] = [];
+          }
+          acc[id].push(rating.Rating);
+          return acc;
+        }, {});
+
+        setRatingsData(ratingsMap);
+      } catch (err) {
+        console.error("Error fetching ratings data:", err.message);
+      }
+    };
+    fetchRatings();
     fetchData(filters);
   }, [filters]);
+
+  const calculateAverageRating = (ratings) => {
+    if (!ratings || ratings.length === 0) return 0;
+    const totalRating = ratings.reduce((acc, rating) => acc + rating, 0);
+    return totalRating / ratings.length;
+  };
 
   if (furnitureError) {
     return (
@@ -85,56 +118,68 @@ const Card = () => {
     <div className="w-full max-w-6xl mx-auto mt-6">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
         <Filter selectedFilters={filters} onFilterChange={setFilters} />
-        {currentItems.map((furniture) => (
-          <Link key={furniture.id} href={`/FurnitureDetail/${furniture.id}`}>
-            <div className="bg-background rounded-lg shadow-lg overflow-hidden">
-              <Image
-                src={furniture.Image}
-                alt="Furniture Item"
-                width={500}
-                height={400}
-                loading="lazy"
-                className="w-full h-56 object-cover"
-              />
-              <div className="p-6 space-y-4">
-                <h3 className="text-xl font-bold font-josefin">
-                  {furniture.Name}
-                </h3>
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-0.5">
-                    <StarIcon className="w-5 h-5 fill-primary" />
-                    <StarIcon className="w-5 h-5 fill-primary" />
-                    <StarIcon className="w-5 h-5 fill-primary" />
-                    <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
-                    <StarIcon className="w-5 h-5 fill-muted stroke-muted-foreground" />
+        {currentItems.map((furniture) => {
+          const ratings = ratingsData[furniture.id] || [];
+          const averageRating = calculateAverageRating(ratings);
+
+          return (
+            <Link key={furniture.id} href={`/FurnitureDetail/${furniture.id}`}>
+              <div className="bg-background rounded-lg shadow-lg overflow-hidden">
+                <Image
+                  src={furniture.Image}
+                  alt="Furniture Item"
+                  width={500}
+                  height={400}
+                  loading="lazy"
+                  className="w-full h-56 object-cover"
+                />
+                <div className="p-6 space-y-4">
+                  <h3 className="text-xl font-bold font-josefin">
+                    {furniture.Name}
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: 5 }, (_, index) => (
+                        <StarIcon
+                          key={index}
+                          className={`w-5 h-5 ${
+                            index < Math.round(averageRating)
+                              ? "fill-yellow-500"
+                              : "fill-gray-300 dark:fill-gray-600"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-gray-500 dark:text-gray-400">
+                      {averageRating.toFixed(1)} ({ratings.length} reviews)
+                    </span>
                   </div>
-                  <span className="text-muted-foreground text-sm">(4.3)</span>
-                </div>
-                <p
-                  className="text-muted-foreground text-sm text-justify"
-                  style={{
-                    maxHeight: "2.8em",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    display: "-webkit-box",
-                    WebkitLineClamp: "2",
-                    WebkitBoxOrient: "vertical",
-                  }}
-                >
-                  {furniture.Description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold">
-                    Rs.{furniture.Price}
-                  </span>
-                  <Button variant="outline" size="sm">
-                    Add to Cart
-                  </Button>
+                  <p
+                    className="text-muted-foreground text-sm text-justify"
+                    style={{
+                      maxHeight: "2.8em",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      display: "-webkit-box",
+                      WebkitLineClamp: "2",
+                      WebkitBoxOrient: "vertical",
+                    }}
+                  >
+                    {furniture.Description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xl font-bold">
+                      Rs.{furniture.Price}
+                    </span>
+                    <Button variant="outline" size="sm">
+                      Add to Cart
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
       </div>
       <div className="flex justify-between mt-8">
         <button

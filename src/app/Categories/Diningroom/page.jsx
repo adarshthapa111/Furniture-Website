@@ -28,15 +28,14 @@ export default function Bedroom() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-1 px-4 py-6 max-w-6xl mx-auto">
         <h1 className="text-xl md:text-3xl font-josefin font-medium py-4">
-          All Bedroom equipment ⚡︎
+          All Diningroom equipment ⚡︎
         </h1>
         <section className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           {diningroom.map((room) => (
-            <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl">
+            <div key={room.id} className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl">
               <Link
                 href={`/FurnitureDetail/${room.id}`}
                 className="block"
-                key={room.id}
               >
                 <Image
                   src={room.Image}

@@ -32,11 +32,10 @@ export default function Bedroom() {
         </h1>
         <section className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           {bedroom.map((room) => (
-            <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl">
+            <div key={room.id} className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl">
               <Link
                 href={`/FurnitureDetail/${room.id}`}
                 className="block"
-                key={room.id}
               >
                 <Image
                   src={room.Image}
