@@ -25,7 +25,7 @@ const Navbar = () => {
     <>
       {!disableNavAndFoot.includes(path) && (
         <div className="shadow-sm border-b border-gray-200">
-          <header className="px-4 lg:px-6 h-14 flex items-center rounded-full justify-between max-w-6xl mx-auto">
+          <header className="px-4 lg:px-6 xl:px-1 h-14 flex items-center rounded-full justify-between max-w-6xl mx-auto">
             <Link href="#" className="flex items-center gap-2">
               <SofaIcon className="h-6 w-6" />
               <span className="text-lg font-bold font-josefin">
@@ -98,7 +98,7 @@ const NavItem = ({ href, currentPath, children }) => (
       <li
         className={
           currentPath === href
-            ? "bg-gradient-to-t from-slate-400 p-2 via-gray-400 to-slate-400 rounded-lg text-white text-sm"
+            ? "bg-gray-800 rounded-lg p-2 text-white text-sm"
             : "text-sm p-2"
         }
       >

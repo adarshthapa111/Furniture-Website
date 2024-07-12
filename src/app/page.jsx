@@ -59,15 +59,15 @@ export default function Home() {
                       src={item.src}
                       alt={item.alt}
                       className={item.imageClass}
-                      height={200}
+                      height={300}
                       width={600}
                     />
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="hidden md:flex"/>
+            <CarouselNext className="hidden md:flex" />
           </Carousel>
         </section>
 
@@ -80,7 +80,7 @@ export default function Home() {
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                 <Link
-                  href="#"
+                  href="/Categories/Livingroom"
                   className="group relative overflow-hidden rounded-lg shadow-lg bg-gray-400"
                   prefetch={false}
                 >
@@ -99,7 +99,7 @@ export default function Home() {
                   </div>
                 </Link>
                 <Link
-                  href="#"
+                  href="/Categories/Bedroom"
                   className="group relative overflow-hidden rounded-lg shadow-lg"
                   prefetch={false}
                 >
@@ -117,7 +117,7 @@ export default function Home() {
                   </div>
                 </Link>
                 <Link
-                  href="#"
+                  href="/Categories/Diningroom"
                   className="group relative overflow-hidden rounded-lg shadow-lg"
                   prefetch={false}
                 >
@@ -135,7 +135,7 @@ export default function Home() {
                   </div>
                 </Link>
                 <Link
-                  href="#"
+                  href="/Categories/Office"
                   className="group relative overflow-hidden rounded-lg shadow-lg"
                   prefetch={false}
                 >
