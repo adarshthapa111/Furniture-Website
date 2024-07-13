@@ -24,6 +24,9 @@
     "@radix-ui/react-slider": "^1.2.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
+    "@react-three/drei": "^9.108.3",
+    "@react-three/fiber": "^8.16.8",
+    "@react-three/postprocessing": "^2.16.2",
     "@supabase/supabase-js": "^2.43.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -41,7 +44,8 @@
     "sweetalert2": "^11.12.0",
     "swiper": "^11.1.4",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.166.1"
   },
   "devDependencies": {
     "eslint": "^8",

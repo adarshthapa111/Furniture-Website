@@ -28,7 +28,7 @@ const page = () => {
         <div>
           <section>
             <div className="p-4">
-              <h2 className="text-2xl font-bold mb-4 w-full bg-slate-200 font-josefin p-2 rounded-full">Dashboard</h2>
+              <h2 className="text-2xl font-bold mb-4 w-full bg-slate-200 font-josefin p-2 rounded-xl">Dashboard</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="bg-white p-8 px-16 rounded shadow border border-gray-300">
                   <h3 className="font-bold font-josefin">Total Sales</h3>
