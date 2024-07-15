@@ -353,6 +353,7 @@ const AddFurniture = () => {
                     placeholder="Enter furniture name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="grid gap-2">
@@ -361,6 +362,7 @@ const AddFurniture = () => {
                     id="category"
                     value={category}
                     onValueChange={(value) => setCategory(value)}
+                    required
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select category" />
@@ -383,6 +385,7 @@ const AddFurniture = () => {
                   className="min-h-[100px]"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
+                  required
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -394,6 +397,7 @@ const AddFurniture = () => {
                     placeholder="Enter price"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="grid gap-2">
@@ -402,6 +406,7 @@ const AddFurniture = () => {
                     id="material"
                     value={material}
                     onValueChange={(value) => setMaterial(value)}
+                    required
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select material" />
@@ -425,6 +430,7 @@ const AddFurniture = () => {
                     placeholder="Enter length"
                     value={length}
                     onChange={(e) => setLength(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="grid gap-2">
@@ -435,6 +441,7 @@ const AddFurniture = () => {
                     placeholder="Enter width"
                     value={breadth}
                     onChange={(e) => setBreadth(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="grid gap-2">
@@ -445,6 +452,7 @@ const AddFurniture = () => {
                     placeholder="Enter height"
                     value={height}
                     onChange={(e) => setHeight(e.target.value)}
+                    required
                   />
                 </div>
               </div>
@@ -454,6 +462,7 @@ const AddFurniture = () => {
                   id="image1"
                   type="file"
                   onChange={(e) => handleImageChange(0, e)}
+                  required
                 />
                 <Label htmlFor="image2">Image 2</Label>
                 <Input
